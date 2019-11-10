@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "231647465311",
+    "firebase_url": "https://hati-samaj.firebaseio.com",
+    "project_id": "hati-samaj",
+    "storage_bucket": "hati-samaj.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:231647465311:android:710612cde49b959c3530ea",
+        "android_client_info": {
+          "package_name": "com.dasharath.hatisamaj"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "231647465311-115b8om6fpql16dk53m71hdgi1cbvrnj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dasharath.hatisamaj",
+            "certificate_hash": "839cbc4e7d6ec7702c2ef57487cb42b2edc657e5"
+          }
+        },
+        {
+          "client_id": "231647465311-5ran6bd75bqfjdpnkiodvr7ie6cshle0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0EP8O855JCXSoCWmLJq731ix6DkBDJC4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "231647465311-5ran6bd75bqfjdpnkiodvr7ie6cshle0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

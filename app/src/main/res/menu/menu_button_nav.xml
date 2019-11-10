@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragmentTab"
+        android:checked="true"
+        android:icon="@drawable/ic_home_selector"
+        android:title="@string/home_title"/>
+    <item
+        android:id="@+id/searchFragmentTab"
+        android:icon="@drawable/ic_search_selector"
+        android:title="@string/moments_title"/>
+    <item
+        android:id="@+id/notificationsFragmentTab"
+        android:icon="@drawable/ic_notifications_selector"
+        android:title="@string/notifications_title"/>
+    <item
+        android:id="@+id/accountFragmentTab"
+        android:icon="@drawable/ic_messages_selector"
+        android:title="@string/messages_title"/>
+</menu>
