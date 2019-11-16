@@ -2,10 +2,11 @@
 <resources>
     <color name="colorPrimary">#FF5722</color>
     <color name="colorPrimaryDark">#EB5345</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#EB5345</color>
 
     <color name="gray_status">#E2E0E0</color>
     <color name="twitter_blue">#FF5722</color>
     <color name="deep_gray">#EB5345</color>
+    <color name="form_gray">#F5F5F5</color>
     <color name="tab_selected">@color/twitter_blue</color>
 </resources>

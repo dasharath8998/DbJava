@@ -22,25 +22,24 @@ import kotlinx.android.synthetic.main.fragment_search.view.*
 class SearchFragment : Fragment() {
 
     var personList: ArrayList<PersonModel>? = null
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_search, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        listener(view)
         personList = ArrayList()
-        for (i in 0..10){
+        for (i in 0..30){
             if(i % 2 == 0) {
                 personList!!.add(PersonModel("", "Name $i", "1$i", "male", "ABCD"))
             } else {
                 personList!!.add(PersonModel("", "Name $i", "1$i", "female", "ABCD"))
             }
         }
-        listener(view)
-        setAdapter(view)
+        if(this@SearchFragment.isVisible) {
+            setAdapter(view)
+        }
     }
 
     private fun listener(view: View) {

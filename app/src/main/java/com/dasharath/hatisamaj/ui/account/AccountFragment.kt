@@ -1,25 +1,58 @@
 package com.dasharath.hatisamaj.ui.account
 
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import com.dasharath.hatisamaj.R
+import com.dasharath.hatisamaj.ui.commonform.CommonFormActivity
+import kotlinx.android.synthetic.main.fragment_account.view.*
 
-/**
- * A simple [Fragment] subclass.
- */
 class AccountFragment : Fragment() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    var registerOption: Array<CharSequence>? = null
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        registerOption = arrayOf<CharSequence>("As a student", "As an employee", "As a businessman","Other")
         return inflater.inflate(R.layout.fragment_account, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        listeners(view)
+    }
 
+    private fun listeners(view: View) {
+        view.btnAccountLogin.setOnClickListener {
+            view.btnAccountLogin.visibility = View.GONE
+            view.linearAccountLogin.visibility = View.VISIBLE
+        }
+
+        view.tvLogout.setOnClickListener {
+            view.btnAccountLogin.visibility = View.VISIBLE
+            view.linearAccountLogin.visibility = View.GONE
+        }
+
+        view.tvRegister.setOnClickListener {
+            val builder = AlertDialog.Builder(context!!)
+            builder.setTitle("Select Registration Type")
+            builder.setItems(registerOption) { dialog, which ->
+                if (which == 0) {
+                    activity?.startActivity(Intent(context,CommonFormActivity::class.java).putExtra("Title",registerOption!![0].toString()))
+                } else if(which == 1) {
+                    activity?.startActivity(Intent(context,CommonFormActivity::class.java).putExtra("Title",registerOption!![1].toString()))
+                } else if(which == 2) {
+                    activity?.startActivity(Intent(context,CommonFormActivity::class.java).putExtra("Title",registerOption!![2].toString()))
+                } else if(which == 3) {
+                    activity?.startActivity(Intent(context,CommonFormActivity::class.java).putExtra("Title",registerOption!![3].toString()))
+                } else if(which == 4) {
+                    activity?.startActivity(Intent(context,CommonFormActivity::class.java).putExtra("Title",registerOption!![4].toString()))
+                }
+            }
+            builder.show()
+        }
+    }
 }

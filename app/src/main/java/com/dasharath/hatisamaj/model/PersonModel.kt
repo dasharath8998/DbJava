@@ -7,3 +7,11 @@ data class PersonModel(
     var gender: String,
     var department: String
 )
+
+data class NotificationModel(
+    var imageUser: String,
+    var imagePerson: String,
+    var name: String,
+    var description: String,
+    var gender: String
+)

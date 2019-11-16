@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity(){
         bottom_bar.enableItemShiftingMode(false)
         bottom_bar.enableAnimation(false)
         replaceFragment(HomeFragment())
-        window.statusBarColor = ContextCompat.getColor(this@MainActivity,R.color.gray_status);
+//        window.statusBarColor = ContextCompat.getColor(this@MainActivity,R.color.gray_status);
     }
 
     private fun navigation() {
