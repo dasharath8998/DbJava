@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.business.BusinessAndOtherFormActivity"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_app" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_7sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:text="Business name"
+        android:textSize="@dimen/_14sdp" />
+
+    <EditText
+        android:id="@+id/etBusinessName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_7sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_7sdp"
+        android:textSize="@dimen/_12sdp"
+        android:background="@drawable/custom_edittext"
+        android:hint="E.g. Import Export"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
+        android:padding="@dimen/_9sdp" />
+
+    <LinearLayout
+        android:id="@+id/linearOther"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_7sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:text="Describe Your Business More"
+            android:textSize="@dimen/_14sdp" />
+
+        <EditText
+            android:id="@+id/etOtherJobType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top|left"
+            android:inputType="textMultiLine"
+            android:lines="8"
+            android:maxLines="10"
+            android:textSize="@dimen/_12sdp"
+            android:minLines="6"
+            android:padding="@dimen/_5sdp"
+            android:background="@drawable/custom_edittext"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_7sdp"
+            android:layout_marginEnd="@dimen/_7sdp"
+            android:scrollbars="vertical" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_7sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:text="Enter Your Contact Number"
+        android:textSize="@dimen/_14sdp" />
+
+    <EditText
+        android:id="@+id/etMNumberBusinessOther"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_7sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_7sdp"
+        android:textSize="@dimen/_12sdp"
+        android:background="@drawable/custom_edittext"
+        android:hint="Mobile Number"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
+        android:padding="@dimen/_9sdp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_15sdp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnEmployeeSubmit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_6sdp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_buttons"
+            android:text="Submit"
+            android:textColor="#fff" />
+
+        <Button
+            android:id="@+id/btnEmployeeCancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_6sdp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_buttons"
+            android:text="Cancel"
+            android:textColor="#fff" />
+
+    </LinearLayout>
+
+</LinearLayout>

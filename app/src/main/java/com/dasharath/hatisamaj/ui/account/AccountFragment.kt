@@ -10,13 +10,14 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import com.dasharath.hatisamaj.R
 import com.dasharath.hatisamaj.ui.commonform.CommonFormActivity
+import com.dasharath.hatisamaj.utils.CommonUtils
 import kotlinx.android.synthetic.main.fragment_account.view.*
 
 class AccountFragment : Fragment() {
 
     var registerOption: Array<CharSequence>? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        registerOption = arrayOf<CharSequence>("As a student", "As an employee", "As a businessman","Other")
+        registerOption = arrayOf<CharSequence>(CommonUtils.AS_STUDENT, CommonUtils.AS_EMPLOYEE, CommonUtils.AS_BUSINESS,CommonUtils.OTHER)
         return inflater.inflate(R.layout.fragment_account, container, false)
     }
 
@@ -40,17 +41,14 @@ class AccountFragment : Fragment() {
             val builder = AlertDialog.Builder(context!!)
             builder.setTitle("Select Registration Type")
             builder.setItems(registerOption) { dialog, which ->
-                if (which == 0) {
-                    activity?.startActivity(Intent(context,CommonFormActivity::class.java).putExtra("Title",registerOption!![0].toString()))
-                } else if(which == 1) {
-                    activity?.startActivity(Intent(context,CommonFormActivity::class.java).putExtra("Title",registerOption!![1].toString()))
-                } else if(which == 2) {
-                    activity?.startActivity(Intent(context,CommonFormActivity::class.java).putExtra("Title",registerOption!![2].toString()))
-                } else if(which == 3) {
-                    activity?.startActivity(Intent(context,CommonFormActivity::class.java).putExtra("Title",registerOption!![3].toString()))
-                } else if(which == 4) {
-                    activity?.startActivity(Intent(context,CommonFormActivity::class.java).putExtra("Title",registerOption!![4].toString()))
+                val intent = Intent(context,CommonFormActivity::class.java)
+                when (which) {
+                    0 -> intent.putExtra(CommonUtils.TITLE,CommonUtils.AS_STUDENT)
+                    1 -> intent.putExtra(CommonUtils.TITLE,CommonUtils.AS_EMPLOYEE)
+                    2 -> intent.putExtra(CommonUtils.TITLE,CommonUtils.AS_BUSINESS)
+                    3 -> intent.putExtra(CommonUtils.TITLE,CommonUtils.OTHER)
                 }
+                activity?.startActivity(intent)
             }
             builder.show()
         }
