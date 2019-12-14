@@ -1,6 +1,7 @@
 package com.dasharath.hatisamaj.ui.search
 
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,8 @@ import com.dasharath.hatisamaj.BR
 import com.dasharath.hatisamaj.R
 import com.dasharath.hatisamaj.databinding.ItemPersonInfoBinding
 import com.dasharath.hatisamaj.model.PersonModel
+import com.dasharath.hatisamaj.ui.personinfo.PersonInfoActivity
+import com.dasharath.hatisamaj.ui.personinfotab.PersonalInfo
 import com.github.nitrico.lastadapter.LastAdapter
 import kotlinx.android.synthetic.main.fragment_search.view.*
 
@@ -59,6 +62,10 @@ class SearchFragment : Fragment() {
                     Glide.with(context!!).load(personList!![it.adapterPosition].image)
                         .placeholder(R.drawable.ic_person_female).into(it.binding.ivPerson)
                 }
+            }
+
+            onClick {
+                startActivity(Intent(activity,PersonInfoActivity::class.java))
             }
         }.into(view.rvSearch)
     }

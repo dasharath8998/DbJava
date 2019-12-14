@@ -104,14 +104,16 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <TextView
+                <EditText
                     android:id="@+id/etBirthday"
                     android:layout_width="0dp"
+                    android:focusable="false"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/custom_edittext"
                     android:padding="@dimen/_8sdp"
-                    android:text="Select your birth date" />
+                    android:textSize="@dimen/_12sdp"
+                    android:hint="Select your birth date" />
 
                 <ImageView
                     android:id="@+id/btnCalender"
@@ -240,6 +242,7 @@
                 android:textSize="@dimen/_14sdp" />
 
             <EditText
+                android:id="@+id/etAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="top|left"

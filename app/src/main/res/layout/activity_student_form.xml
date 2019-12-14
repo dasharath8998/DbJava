@@ -78,7 +78,7 @@
                 android:layout_marginEnd="@dimen/_7sdp"
                 android:textSize="@dimen/_12sdp"
                 android:background="@drawable/custom_edittext"
-                android:hint="Enter Your Percentage"
+                android:hint="@string/enter_your_percentage"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:padding="@dimen/_9sdp" />

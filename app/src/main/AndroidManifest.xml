@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.business.BusinessAndOtherFormActivity"></activity>
+        <activity android:name=".ui.personinfo.PersonInfoActivity"></activity>
+        <activity android:name=".ui.business.BusinessAndOtherFormActivity" />
         <activity android:name=".ui.employeeform.EmployeeFormActivity" />
         <activity android:name=".ui.studentform.StudentFormActivity" />
         <activity android:name=".ui.commonform.CommonFormActivity" />

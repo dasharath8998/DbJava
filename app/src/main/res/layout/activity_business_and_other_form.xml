@@ -1,38 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.business.BusinessAndOtherFormActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ui.business.BusinessAndOtherFormActivity">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar_app" />
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/linearBusinessName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_7sdp"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:text="Business name"
-        android:textSize="@dimen/_14sdp" />
-
-    <EditText
-        android:id="@+id/etBusinessName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_7sdp"
-        android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_7sdp"
-        android:textSize="@dimen/_12sdp"
-        android:background="@drawable/custom_edittext"
-        android:hint="E.g. Import Export"
-        android:inputType="textEmailAddress"
-        android:maxLines="1"
-        android:padding="@dimen/_9sdp" />
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:text="Business name"
+            android:textSize="@dimen/_14sdp" />
+
+        <EditText
+            android:id="@+id/etBusinessName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/custom_edittext"
+            android:hint="E.g. Import Export"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:padding="@dimen/_9sdp"
+            android:textSize="@dimen/_12sdp" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearOther"
@@ -41,29 +47,30 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tvBusinessOrOther"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_7sdp"
             android:layout_marginTop="@dimen/_15sdp"
-            android:text="Describe Your Business More"
+            android:text="@string/describe_your_business_more"
             android:textSize="@dimen/_14sdp" />
 
         <EditText
             android:id="@+id/etOtherJobType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_7sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_7sdp"
+            android:background="@drawable/custom_edittext"
             android:gravity="top|left"
             android:inputType="textMultiLine"
             android:lines="8"
             android:maxLines="10"
-            android:textSize="@dimen/_12sdp"
             android:minLines="6"
             android:padding="@dimen/_5sdp"
-            android:background="@drawable/custom_edittext"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginStart="@dimen/_7sdp"
-            android:layout_marginEnd="@dimen/_7sdp"
-            android:scrollbars="vertical" />
+            android:scrollbars="vertical"
+            android:textSize="@dimen/_12sdp" />
 
     </LinearLayout>
 
@@ -82,12 +89,12 @@
         android:layout_marginStart="@dimen/_7sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_7sdp"
-        android:textSize="@dimen/_12sdp"
         android:background="@drawable/custom_edittext"
         android:hint="Mobile Number"
         android:inputType="textEmailAddress"
         android:maxLines="1"
-        android:padding="@dimen/_9sdp" />
+        android:padding="@dimen/_9sdp"
+        android:textSize="@dimen/_12sdp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -107,7 +114,7 @@
             android:textColor="#fff" />
 
         <Button
-            android:id="@+id/btnEmployeeCancel"
+            android:id="@+id/btnOtherCancel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_15sdp"

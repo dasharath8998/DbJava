@@ -39,6 +39,7 @@
 
             <LinearLayout
                 android:id="@+id/linearOther"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -70,6 +71,51 @@
 
             </LinearLayout>
 
+            <RadioGroup
+                android:id="@+id/rgGClass"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rbC3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_edittext"
+                    android:checked="true"
+                    android:padding="@dimen/_5sdp"
+                    android:text="Class-3"
+                    android:textSize="@dimen/_12sdp" />
+
+                <RadioButton
+                    android:id="@+id/rbC2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:background="@drawable/custom_edittext"
+                    android:padding="@dimen/_5sdp"
+                    android:text="Class-2"
+                    android:textSize="@dimen/_12sdp" />
+                <RadioButton
+                    android:id="@+id/rbC1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_edittext"
+                    android:padding="@dimen/_5sdp"
+                    android:text="Class-1"
+                    android:textSize="@dimen/_12sdp" />
+
+            </RadioGroup>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -92,49 +138,36 @@
                 android:maxLines="1"
                 android:padding="@dimen/_9sdp" />
 
-            <RadioGroup
-                android:id="@+id/rGroupPercentage"
+            <LinearLayout
+                android:id="@+id/linearCompany"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_7sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_7sdp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <RadioButton
-                    android:id="@+id/rbC3"
-                    android:layout_width="0dp"
+                <TextView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/custom_edittext"
-                    android:checked="true"
-                    android:padding="@dimen/_5sdp"
-                    android:text="Class-3"
-                    android:textSize="20sp" />
+                    android:layout_marginStart="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:text="Company Name"
+                    android:textSize="@dimen/_14sdp" />
 
-                <RadioButton
-                    android:id="@+id/rbC2"
-                    android:layout_width="0dp"
+                <EditText
+                    android:id="@+id/etCompanyName"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginStart="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_7sdp"
+                    android:textSize="@dimen/_12sdp"
                     android:background="@drawable/custom_edittext"
-                    android:padding="@dimen/_5sdp"
-                    android:text="Class-2"
-                    android:textSize="20sp" />
-                <RadioButton
-                    android:id="@+id/rbC1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/custom_edittext"
-                    android:padding="@dimen/_5sdp"
-                    android:text="Class-1"
-                    android:textSize="20sp" />
+                    android:hint="E.g. TCS"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:padding="@dimen/_9sdp" />
 
-            </RadioGroup>
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -153,7 +186,7 @@
                 android:layout_marginEnd="@dimen/_7sdp"
                 android:textSize="@dimen/_12sdp"
                 android:background="@drawable/custom_edittext"
-                android:hint="E.g. Mobile Number"
+                android:hint="Mobile Number"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:padding="@dimen/_9sdp" />
