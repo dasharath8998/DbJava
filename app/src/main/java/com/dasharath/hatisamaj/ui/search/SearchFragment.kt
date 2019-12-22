@@ -35,9 +35,9 @@ class SearchFragment : Fragment() {
         personList = ArrayList()
         for (i in 0..30){
             if(i % 2 == 0) {
-                personList!!.add(PersonModel("", "Name $i", "1$i", "male", "ABCD"))
+                personList!!.add(PersonModel("", "Name $i", "1$i", "Male", "ABCD"))
             } else {
-                personList!!.add(PersonModel("", "Name $i", "1$i", "female", "ABCD"))
+                personList!!.add(PersonModel("", "Name $i", "1$i", "Female", "ABCD"))
             }
         }
         if(this@SearchFragment.isVisible) {
@@ -55,7 +55,7 @@ class SearchFragment : Fragment() {
         view.rvSearch.layoutManager = GridLayoutManager(context,2)
         LastAdapter(personList!!, BR.personData).map<PersonModel,ItemPersonInfoBinding>(R.layout.item_person_info){
             onBind {
-                if(personList!![it.adapterPosition].gender == "male") {
+                if(personList!![it.adapterPosition].gender == "Male") {
                     Glide.with(context!!).load(personList!![it.adapterPosition].image)
                         .placeholder(R.drawable.ic_person_male).into(it.binding.ivPerson)
                 } else {

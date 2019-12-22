@@ -52,6 +52,7 @@
                     android:textSize="@dimen/_14sdp" />
 
                 <EditText
+                    android:id="@+id/etOtherStudent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="top|left"
@@ -79,7 +80,8 @@
                 android:textSize="@dimen/_12sdp"
                 android:background="@drawable/custom_edittext"
                 android:hint="@string/enter_your_percentage"
-                android:inputType="textEmailAddress"
+                android:inputType="numberDecimal"
+                android:maxLength="5"
                 android:maxLines="1"
                 android:padding="@dimen/_9sdp" />
 

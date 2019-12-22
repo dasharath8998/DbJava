@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.dasharath.hatisamaj.R
-import com.dasharath.hatisamaj.utils.ViewPagerAdapter
 
 
 class PersonalInfo : Fragment() {

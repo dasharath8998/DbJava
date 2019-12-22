@@ -11,4 +11,5 @@
     <color name="tab_selected">@color/twitter_blue</color>
     <color name="orange_match_blue">#072566</color>
     <color name="orange_match_navy_blue">#347FF8</color>
+    <color name="dark">#292727</color>
 </resources>

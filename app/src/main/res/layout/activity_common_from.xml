@@ -117,7 +117,7 @@
 
                 <ImageView
                     android:id="@+id/btnCalender"
-                    android:layout_width="@dimen/_40sdp"
+                    android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_30sdp"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
@@ -166,7 +166,7 @@
                     android:background="@drawable/custom_edittext"
                     android:checked="true"
                     android:padding="@dimen/_5sdp"
-                    android:text="male"
+                    android:text="Male"
                     android:textSize="20sp" />
 
                 <RadioButton

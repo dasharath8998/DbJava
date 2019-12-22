@@ -15,3 +15,10 @@ data class NotificationModel(
     var description: String,
     var gender: String
 )
+
+data class PostModel(
+    var profileImage: String,
+    var image: String,
+    var userName: String,
+    var description: String
+)

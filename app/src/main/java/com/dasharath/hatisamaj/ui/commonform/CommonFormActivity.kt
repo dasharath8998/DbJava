@@ -2,11 +2,10 @@ package com.dasharath.hatisamaj.ui.commonform
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.EditText
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.dasharath.hatisamaj.R
 import com.dasharath.hatisamaj.listeners.DateSetListener
 import com.dasharath.hatisamaj.ui.business.BusinessAndOtherFormActivity
@@ -64,13 +63,17 @@ class CommonFormActivity : AppCompatActivity() {
         btnReset.setOnClickListener {
             onBackPressed()
         }
+
+        btnCalender.setOnClickListener {
+            openCalender()
+        }
     }
 
     private fun formIsValid(): Boolean{
-        if(!etName.checkTextValue(true)) return false
-        if(!etFName.checkTextValue(true)) return false
-        if(!etSName.checkTextValue(true)) return false
-        if(!etEmail.checkTextValue(checkForValidText = false, isEmail = true)) return false
+        if(!etName.checkTextValue(checkForValidText = true)) return false
+        if(!etFName.checkTextValue(checkForValidText = true)) return false
+        if(!etSName.checkTextValue(checkForValidText = true)) return false
+        if(!etEmail.checkTextValue(isEmail = true)) return false
         if(!etBirthday.checkTextValue()) return false
         if(!etPResidence.checkTextValue()) return false
         if(!etCLocationo.checkTextValue()) return false
@@ -83,7 +86,7 @@ class CommonFormActivity : AppCompatActivity() {
 
         val value = this.text.toString()
         if(value == "") {
-            this.error = "Enter value please"
+            this.error = "This field can't be blank"
             return false
         }
 

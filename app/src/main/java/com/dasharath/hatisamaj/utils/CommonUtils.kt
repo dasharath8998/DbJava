@@ -3,6 +3,7 @@ package com.dasharath.hatisamaj.utils
 import android.app.DatePickerDialog
 import android.content.Context
 import android.text.format.DateFormat
+import android.widget.Toast
 import com.dasharath.hatisamaj.listeners.DateSetListener
 import java.text.SimpleDateFormat
 import java.util.*
@@ -79,5 +80,9 @@ object Utils{
         val month = Integer.parseInt(DateFormat.format("mm",parseDate).toString())
         val year = Integer.parseInt(DateFormat.format("yyyy",parseDate).toString())
         return getAge(year,month-1,day)
+    }
+
+    fun Context.toast(value: String){
+        Toast.makeText(this,value,Toast.LENGTH_LONG).show()
     }
 }
