@@ -18,6 +18,7 @@ object CommonUtils {
     const val PRIVATE_JOB = "Private Job"
     const val SELF_EMPLOYEE = "Self Employee"
     const val CATEGORY = "Category"
+    const val IS_FROM_LOGIN = "is_from_login"
 }
 
 object Utils{

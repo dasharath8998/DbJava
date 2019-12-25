@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.dasharath.hatisamaj.R
+import com.dasharath.hatisamaj.ui.LoginActivity
 import com.dasharath.hatisamaj.ui.commonform.CommonFormActivity
 import com.dasharath.hatisamaj.utils.CommonUtils
 import kotlinx.android.synthetic.main.fragment_account.view.*
@@ -32,6 +33,7 @@ class AccountFragment : Fragment() {
 
     private fun listeners(view: View) {
         view.btnAccountLogin.setOnClickListener {
+            activity?.startActivity(Intent(activity,LoginActivity::class.java))
             view.btnAccountLogin.visibility = View.GONE
             view.linearAccountLogin.visibility = View.VISIBLE
         }

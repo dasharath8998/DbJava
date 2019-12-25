@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".ui.LoginActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_app" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgLoginImage"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:src="@drawable/login_image"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:scaleType="fitCenter"/>
+
+            <EditText
+                android:id="@+id/etLoginEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/imgLoginImage"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:background="@drawable/custom_edittext"
+                android:padding="8dp"
+                android:drawablePadding="10dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="17dp"
+                android:layout_marginRight="17dp"/>
+
+            <EditText
+                android:id="@+id/etLoginPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/etLoginEmail"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:background="@drawable/custom_edittext"
+                android:padding="8dp"
+                android:drawablePadding="10dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginLeft="17dp"
+                android:layout_marginRight="17dp"/>
+
+            <TextView
+                android:text="Forget Password"
+                android:id="@+id/tvForgotPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/etLoginPassword"
+                android:layout_marginTop="10dp"
+                android:textAlignment="textEnd"
+                android:textSize="17dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="23dp"
+                android:textColor="@color/colorPrimaryDark"/>
+
+            <Button
+                android:id="@+id/btnLoginButton"
+                android:layout_below="@+id/tvForgotPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="Login"
+                android:textSize="24sp"
+                android:textColor="@android:color/background_light"
+                android:textAllCaps="false"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginLeft="19dp"
+                android:layout_marginRight="19dp"
+                android:background="@drawable/custom_buttons"/>
+
+            <TextView
+                android:text="Need New Account ?"
+                android:id="@+id/tvNeedNewAccount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/btnLoginButton"
+                android:layout_marginTop="10dp"
+                android:textAlignment="center"
+                android:textSize="17dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="23dp"
+                android:textColor="@color/colorPrimaryDark"/>
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
