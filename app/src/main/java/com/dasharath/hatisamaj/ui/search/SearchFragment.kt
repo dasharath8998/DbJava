@@ -16,12 +16,11 @@ import com.dasharath.hatisamaj.databinding.ItemPersonInfoBinding
 import com.dasharath.hatisamaj.model.PersonModel
 import com.dasharath.hatisamaj.ui.personinfo.PersonInfoActivity
 import com.dasharath.hatisamaj.ui.personinfotab.PersonalInfo
+import com.dasharath.hatisamaj.utils.CommonUtils
+import com.dasharath.hatisamaj.utils.Utils
 import com.github.nitrico.lastadapter.LastAdapter
 import kotlinx.android.synthetic.main.fragment_search.view.*
 
-/**
- * A simple [Fragment] subclass.
- */
 class SearchFragment : Fragment() {
 
     var personList: ArrayList<PersonModel>? = null
@@ -65,7 +64,12 @@ class SearchFragment : Fragment() {
             }
 
             onClick {
-                startActivity(Intent(activity,PersonInfoActivity::class.java))
+                if(it.adapterPosition % 2 == 0)
+                    startActivity(Intent(activity,PersonInfoActivity::class.java).putExtra(CommonUtils.CATEGORY,CommonUtils.AS_BUSINESS))
+                if(it.adapterPosition % 3 == 0)
+                    startActivity(Intent(activity,PersonInfoActivity::class.java).putExtra(CommonUtils.CATEGORY,CommonUtils.AS_EMPLOYEE))
+                if(it.adapterPosition % 4 == 0)
+                    startActivity(Intent(activity,PersonInfoActivity::class.java).putExtra(CommonUtils.CATEGORY,CommonUtils.AS_STUDENT))
             }
         }.into(view.rvSearch)
     }

@@ -11,14 +11,20 @@
     <string name="enter_your_CGPA">Enter Your CGPA</string>
     <string name="describe_your_business_more">Describe Your Business More</string>
     <string name="describe_yourself">Describe Yourself More for verification</string>
+    <string name="register_new_student">Register new student</string>
+    <string name="register_new">Register new</string>
+    <string name="how_to_use">How to use</string>
+    <string name="terms_of_conditions">Terms of conditions</string>
+    <string name="sign_out">Sign out</string>
+    <string name="sign_in_or_sign_up">Sign in or Sign up</string>
 
     <string-array name="studiesType">
         <item>Select</item>
         <item>SSC</item>
         <item>HSC</item>
+        <item>Degree</item>
         <item>Graduate</item>
         <item>Post Graduate</item>
-        <item>PHD</item>
         <item>Other</item>
     </string-array>
 

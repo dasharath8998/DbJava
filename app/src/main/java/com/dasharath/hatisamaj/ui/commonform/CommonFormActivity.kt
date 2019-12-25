@@ -46,12 +46,32 @@ class CommonFormActivity : AppCompatActivity() {
 
     private fun listeners() {
         btnNextCommon.setOnClickListener {
-            if(formIsValid()) {
+            if (formIsValid()) {
                 when (formTitle) {
-                    CommonUtils.AS_STUDENT -> startActivity(Intent(this@CommonFormActivity, StudentFormActivity::class.java))
-                    CommonUtils.AS_EMPLOYEE -> startActivity(Intent(this@CommonFormActivity, EmployeeFormActivity::class.java))
-                    CommonUtils.AS_BUSINESS -> startActivity(Intent(this@CommonFormActivity, BusinessAndOtherFormActivity::class.java).putExtra(CommonUtils.TITLE, formTitle))
-                    CommonUtils.OTHER -> startActivity(Intent(this@CommonFormActivity, BusinessAndOtherFormActivity::class.java).putExtra(CommonUtils.TITLE, formTitle))
+                    CommonUtils.AS_STUDENT -> startActivity(
+                        Intent(
+                            this@CommonFormActivity,
+                            StudentFormActivity::class.java
+                        )
+                    )
+                    CommonUtils.AS_EMPLOYEE -> startActivity(
+                        Intent(
+                            this@CommonFormActivity,
+                            EmployeeFormActivity::class.java
+                        )
+                    )
+                    CommonUtils.AS_BUSINESS -> startActivity(
+                        Intent(
+                            this@CommonFormActivity,
+                            BusinessAndOtherFormActivity::class.java
+                        ).putExtra(CommonUtils.TITLE, formTitle)
+                    )
+                    CommonUtils.OTHER -> startActivity(
+                        Intent(
+                            this@CommonFormActivity,
+                            BusinessAndOtherFormActivity::class.java
+                        ).putExtra(CommonUtils.TITLE, formTitle)
+                    )
                 }
             }
         }
@@ -69,36 +89,39 @@ class CommonFormActivity : AppCompatActivity() {
         }
     }
 
-    private fun formIsValid(): Boolean{
-        if(!etName.checkTextValue(checkForValidText = true)) return false
-        if(!etFName.checkTextValue(checkForValidText = true)) return false
-        if(!etSName.checkTextValue(checkForValidText = true)) return false
-        if(!etEmail.checkTextValue(isEmail = true)) return false
-        if(!etBirthday.checkTextValue()) return false
-        if(!etPResidence.checkTextValue()) return false
-        if(!etCLocationo.checkTextValue()) return false
-        if(!etAddress.checkTextValue()) return false
+    private fun formIsValid(): Boolean {
+        if (!etName.checkTextValue(checkForValidText = true)) return false
+        if (!etFName.checkTextValue(checkForValidText = true)) return false
+        if (!etSName.checkTextValue(checkForValidText = true)) return false
+        if (!etEmail.checkTextValue(isEmail = true)) return false
+        if (!etBirthday.checkTextValue()) return false
+        if (!etPResidence.checkTextValue()) return false
+        if (!etCLocationo.checkTextValue()) return false
+        if (!etAddress.checkTextValue()) return false
 
         return true
     }
 
-    private fun EditText.checkTextValue(checkForValidText: Boolean = false, isEmail: Boolean = false): Boolean{
+    private fun EditText.checkTextValue(
+        checkForValidText: Boolean = false,
+        isEmail: Boolean = false
+    ): Boolean {
 
         val value = this.text.toString()
-        if(value == "") {
+        if (value == "") {
             this.error = "This field can't be blank"
             return false
         }
 
-        if(checkForValidText){
-            if(!ps?.matcher(value)?.matches()!!){
+        if (checkForValidText) {
+            if (!ps?.matcher(value)?.matches()!!) {
                 this.error = "Enter valid text"
                 return false
             }
         }
 
-        if(isEmail){
-            if(!Patterns.EMAIL_ADDRESS.matcher(value).matches()){
+        if (isEmail) {
+            if (!Patterns.EMAIL_ADDRESS.matcher(value).matches()) {
                 this.error = "Enter valid email"
                 return false
             }
@@ -107,15 +130,15 @@ class CommonFormActivity : AppCompatActivity() {
         return true
     }
 
-    private fun openCalender(){
-        Utils.openCalender(this@CommonFormActivity,cYear,cMonth,cDay, object : DateSetListener {
+    private fun openCalender() {
+        Utils.openCalender(this@CommonFormActivity, cYear, cMonth, cDay, object : DateSetListener {
             @SuppressLint("SetTextI18n")
             override fun onDateSelected(year: Int, month: Int, day: Int) {
-                cYear=year
-                cMonth=month
-                cDay=day
-                etBirthday.setText("${day}, ${month+1}, $year")
-                tvYear.text= Utils.getAge(year,month,day)
+                cYear = year
+                cMonth = month
+                cDay = day
+                etBirthday.setText("${day}, ${month + 1}, $year")
+                tvYear.text = Utils.getAge(year, month, day)
             }
         })
     }

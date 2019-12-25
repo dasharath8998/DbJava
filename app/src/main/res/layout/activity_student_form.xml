@@ -24,8 +24,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_7sdp"
                 android:layout_marginTop="@dimen/_8sdp"
-                android:text="Select Your Highest Studies"
                 android:layout_marginBottom="@dimen/_4sdp"
+                android:text="Select Your Highest Studies"
                 android:textSize="@dimen/_14sdp" />
 
             <Spinner
@@ -35,7 +35,7 @@
                 android:layout_marginStart="@dimen/_7sdp"
                 android:layout_marginEnd="@dimen/_7sdp"
                 android:entries="@array/studiesType"
-                android:padding="@dimen/_8sdp"/>
+                android:padding="@dimen/_8sdp" />
 
             <LinearLayout
                 android:id="@+id/linearOther"
@@ -55,18 +55,18 @@
                     android:id="@+id/etOtherStudent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_7sdp"
+                    android:background="@drawable/custom_edittext"
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:lines="8"
                     android:maxLines="10"
-                    android:textSize="@dimen/_12sdp"
                     android:minLines="6"
                     android:padding="@dimen/_5sdp"
-                    android:background="@drawable/custom_edittext"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginStart="@dimen/_7sdp"
-                    android:layout_marginEnd="@dimen/_7sdp"
-                    android:scrollbars="vertical" />
+                    android:scrollbars="vertical"
+                    android:textSize="@dimen/_12sdp" />
 
             </LinearLayout>
 
@@ -77,13 +77,13 @@
                 android:layout_marginStart="@dimen/_7sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_7sdp"
-                android:textSize="@dimen/_12sdp"
                 android:background="@drawable/custom_edittext"
                 android:hint="@string/enter_your_percentage"
                 android:inputType="numberDecimal"
                 android:maxLength="5"
                 android:maxLines="1"
-                android:padding="@dimen/_9sdp" />
+                android:padding="@dimen/_9sdp"
+                android:textSize="@dimen/_12sdp" />
 
             <RadioGroup
                 android:id="@+id/rGroupPercentage"
@@ -138,13 +138,13 @@
                     android:id="@+id/ivUploadImage"
                     android:layout_width="@dimen/_100sdp"
                     android:layout_height="@dimen/_100sdp"
-                    android:src="@drawable/ic_add_image"/>
+                    android:src="@drawable/ic_add_image" />
 
                 <TextView
                     android:id="@+id/tvImageUpload"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Upload Here"/>
+                    android:text="Upload Here" />
 
             </LinearLayout>
 
@@ -159,8 +159,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
-                    android:layout_weight="1"
                     android:layout_marginBottom="@dimen/_6sdp"
+                    android:layout_weight="1"
                     android:background="@drawable/custom_buttons"
                     android:text="Submit"
                     android:textColor="#fff" />
@@ -170,10 +170,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="@dimen/_6sdp"
                     android:layout_weight="1"
                     android:background="@drawable/custom_buttons"
                     android:text="Cancel"
-                    android:layout_marginBottom="@dimen/_6sdp"
                     android:textColor="#fff" />
 
             </LinearLayout>

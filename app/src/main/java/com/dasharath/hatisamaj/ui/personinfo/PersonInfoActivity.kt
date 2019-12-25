@@ -3,8 +3,10 @@ package com.dasharath.hatisamaj.ui.personinfo
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.dasharath.hatisamaj.R
+import com.dasharath.hatisamaj.utils.CommonUtils
 import com.dasharath.hatisamaj.utils.ViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_person_info.*
+
 
 class PersonInfoActivity : AppCompatActivity() {
 
@@ -23,7 +25,7 @@ class PersonInfoActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        viewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
+        viewPagerAdapter = ViewPagerAdapter(supportFragmentManager,intent.getStringExtra(CommonUtils.CATEGORY)!!)
         viewPager?.adapter = viewPagerAdapter
         tabs.setupWithViewPager(viewPager)
     }

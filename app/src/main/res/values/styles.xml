@@ -12,7 +12,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">@dimen/_5sdp</item>
-        <item name="cardElevation">@dimen/_2sdp</item>
+        <item name="cardElevation">@dimen/_1sdp</item>
         <item name="cardCornerRadius">@dimen/_3sdp</item>
     </style>
 

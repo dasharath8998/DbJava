@@ -1,5 +1,6 @@
 package com.dasharath.hatisamaj.utils
 
+import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -7,7 +8,7 @@ import com.dasharath.hatisamaj.ui.personinfotab.OtherInfo
 import com.dasharath.hatisamaj.ui.personinfotab.PersonalInfo
 
 
-class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm,  BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class ViewPagerAdapter(fm: FragmentManager, var category: String) : FragmentPagerAdapter(fm,  BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getItem(position: Int): Fragment {
         var fragment: Fragment? = null
@@ -16,6 +17,9 @@ class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm,  BEHAVIOR
         } else if (position == 1) {
             fragment = OtherInfo()
         }
+        val args = Bundle()
+        args.putString(CommonUtils.CATEGORY,category)
+        fragment?.arguments = args
         return fragment!!
     }
 

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <include
         android:id="@+id/toolbar"
@@ -15,7 +16,7 @@
         android:background="@drawable/custom_buttons"
         android:paddingStart="@dimen/_10sdp"
         android:paddingEnd="@dimen/_10sdp"
-        android:text="SIGN IN or SIGN UP"
+        android:text="@string/sign_in_or_sign_up"
         android:textAllCaps="false"
         android:textColor="@android:color/background_light"
         android:textSize="@dimen/_12sdp" />
@@ -26,6 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
         android:visibility="gone"
+        tools:visibility="visible"
         android:orientation="vertical">
 
         <LinearLayout
@@ -89,7 +91,21 @@
             android:padding="@dimen/_15sdp"
             android:textSize="@dimen/_14sdp"
             android:textStyle="bold"
-            android:text="Register New "/>
+            android:text="@string/register_new"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/gray_status"/>
+
+        <TextView
+            android:id="@+id/tvRegisterStudent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_15sdp"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
+            android:text="@string/register_new_student"/>
 
         <View
             android:layout_width="match_parent"
@@ -103,7 +119,7 @@
             android:padding="@dimen/_15sdp"
             android:textSize="@dimen/_14sdp"
             android:textStyle="bold"
-            android:text="How to use"/>
+            android:text="@string/how_to_use"/>
 
         <View
             android:layout_width="match_parent"
@@ -117,7 +133,7 @@
             android:padding="@dimen/_15sdp"
             android:textSize="@dimen/_14sdp"
             android:textStyle="bold"
-            android:text="Terms of Conditions"/>
+            android:text="@string/terms_of_conditions"/>
 
         <View
             android:layout_width="match_parent"
@@ -131,7 +147,7 @@
             android:padding="@dimen/_15sdp"
             android:textSize="@dimen/_14sdp"
             android:textStyle="bold"
-            android:text="Sign Out"/>
+            android:text="@string/sign_out"/>
 
         <View
             android:layout_width="match_parent"

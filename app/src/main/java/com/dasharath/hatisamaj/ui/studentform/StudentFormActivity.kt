@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -18,7 +19,6 @@ import com.dasharath.hatisamaj.utils.CommonUtils
 import com.dasharath.hatisamaj.utils.Utils.toast
 import kotlinx.android.synthetic.main.activity_student_form.*
 import kotlinx.android.synthetic.main.toolbar_app.view.*
-import android.net.Uri
 import java.io.File
 
 
