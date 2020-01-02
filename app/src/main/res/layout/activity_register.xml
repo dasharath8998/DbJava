@@ -3,12 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/white"
     tools:context=".ui.RegisterActivity">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar_app" />
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:elevation="@dimen/_1sdp"
+        android:id="@+id/aviLoadingRegister"
+        style="@style/AVLoadingIndicatorView"
+        android:visibility="gone"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_centerInParent="true"
+        app:indicatorName="TriangleSkewSpinIndicator"
+        app:indicatorColor="@color/colorPrimaryDark"
+        android:layout_height="@dimen/_50sdp"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -44,10 +56,24 @@
                 android:padding="8dp" />
 
             <EditText
-                android:id="@+id/etRegisterPassword"
+                android:id="@+id/etRegisterName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/etRegisterEmail"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginRight="@dimen/_12sdp"
+                android:background="@drawable/custom_edittext"
+                android:hint="Name"
+                android:inputType="textCapSentences"
+                android:padding="8dp" />
+
+            <EditText
+                android:id="@+id/etRegisterPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etRegisterName"
                 android:layout_alignParentStart="true"
                 android:layout_marginLeft="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_10sdp"

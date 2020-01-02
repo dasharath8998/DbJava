@@ -20,6 +20,9 @@
         <activity android:name=".ui.employeeform.EmployeeFormActivity" />
         <activity android:name=".ui.studentform.StudentFormActivity" />
         <activity android:name=".ui.commonform.CommonFormActivity" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,148 +11,175 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar_app" />
 
-    <LinearLayout
-        android:id="@+id/linearBusinessName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_7sdp"
-        android:layout_marginEnd="@dimen/_7sdp"
-        android:orientation="vertical">
+    <com.wang.avi.AVLoadingIndicatorView
+        android:elevation="@dimen/_1sdp"
+        android:id="@+id/aviLoading"
+        style="@style/AVLoadingIndicatorView"
+        android:visibility="gone"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_centerInParent="true"
+        app:indicatorName="BallScaleMultipleIndicator"
+        app:indicatorColor="@color/colorPrimaryDark"
+        android:layout_height="@dimen/_50sdp"/>
 
-        <TextView
+    <ScrollView
+        android:layout_below="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:text="Business name"
-            android:textSize="@dimen/_14sdp" />
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/etBusinessName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:background="@drawable/custom_edittext"
-            android:hint="E.g. Import Export"
-            android:inputType="textEmailAddress"
-            android:maxLines="1"
-            android:padding="@dimen/_9sdp"
-            android:textSize="@dimen/_12sdp" />
+            <LinearLayout
+                android:id="@+id/linearBusinessName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
+                android:orientation="vertical">
 
-    </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:text="Business name"
+                    android:textSize="@dimen/_14sdp" />
 
-    <LinearLayout
-        android:id="@+id/linearEducation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_7sdp"
-        android:layout_marginEnd="@dimen/_7sdp"
-        android:orientation="vertical">
+                <EditText
+                    android:id="@+id/etBusinessName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/custom_edittext"
+                    android:hint="E.g. Import Export"
+                    android:inputType="textCapSentences"
+                    android:maxLines="1"
+                    android:padding="@dimen/_9sdp"
+                    android:textSize="@dimen/_12sdp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:text="Education"
-            android:textSize="@dimen/_14sdp" />
+            </LinearLayout>
 
-        <EditText
-            android:id="@+id/etEducation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:background="@drawable/custom_edittext"
-            android:hint="E.g. BA Pass"
-            android:inputType="textEmailAddress"
-            android:maxLines="1"
-            android:padding="@dimen/_9sdp"
-            android:textSize="@dimen/_12sdp" />
+            <LinearLayout
+                android:id="@+id/linearEducation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
+                android:orientation="vertical">
 
-    </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:text="Education"
+                    android:textSize="@dimen/_14sdp" />
 
-    <LinearLayout
-        android:id="@+id/linearOther"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+                <EditText
+                    android:id="@+id/etEducation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/custom_edittext"
+                    android:hint="E.g. BA Pass"
+                    android:inputType="textCapSentences"
+                    android:maxLines="1"
+                    android:padding="@dimen/_9sdp"
+                    android:textSize="@dimen/_12sdp" />
 
-        <TextView
-            android:id="@+id/tvBusinessOrOther"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_7sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:text="@string/describe_your_business_more"
-            android:textSize="@dimen/_14sdp" />
+            </LinearLayout>
 
-        <EditText
-            android:id="@+id/etOtherBusinessType"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_7sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_7sdp"
-            android:background="@drawable/custom_edittext"
-            android:gravity="top|left"
-            android:inputType="textMultiLine"
-            android:lines="8"
-            android:maxLines="10"
-            android:minLines="6"
-            android:padding="@dimen/_5sdp"
-            android:scrollbars="vertical"
-            android:textSize="@dimen/_12sdp" />
+            <LinearLayout
+                android:id="@+id/linearOther"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/tvBusinessOrOther"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:text="@string/describe_your_business_more"
+                    android:textSize="@dimen/_14sdp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_7sdp"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:text="Enter Your Contact Number"
-        android:textSize="@dimen/_14sdp" />
+                <EditText
+                    android:id="@+id/etOtherBusinessType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_7sdp"
+                    android:background="@drawable/custom_edittext"
+                    android:gravity="top|left"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:lines="8"
+                    android:maxLines="10"
+                    android:minLines="6"
+                    android:padding="@dimen/_5sdp"
+                    android:scrollbars="vertical"
+                    android:textSize="@dimen/_12sdp" />
 
-    <EditText
-        android:id="@+id/etMNumberBusinessOther"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_7sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_7sdp"
-        android:background="@drawable/custom_edittext"
-        android:hint="Mobile Number"
-        android:inputType="number"
-        android:maxLines="1"
-        android:padding="@dimen/_9sdp"
-        android:textSize="@dimen/_12sdp" />
+            </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_15sdp"
-        android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:text="Enter Your Contact Number"
+                android:textSize="@dimen/_14sdp" />
 
-        <Button
-            android:id="@+id/btnEmployeeSubmit"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/_15sdp"
-            android:layout_marginBottom="@dimen/_6sdp"
-            android:layout_weight="1"
-            android:background="@drawable/custom_buttons"
-            android:text="Submit"
-            android:textColor="#fff" />
+            <EditText
+                android:id="@+id/etMNumberBusinessOther"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
+                android:background="@drawable/custom_edittext"
+                android:hint="Mobile Number"
+                android:inputType="number"
+                android:maxLines="1"
+                android:padding="@dimen/_9sdp"
+                android:textSize="@dimen/_12sdp" />
 
-        <Button
-            android:id="@+id/btnOtherCancel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_15sdp"
-            android:layout_marginBottom="@dimen/_6sdp"
-            android:layout_weight="1"
-            android:background="@drawable/custom_buttons"
-            android:text="Cancel"
-            android:textColor="#fff" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_15sdp"
+                android:orientation="horizontal">
 
-    </LinearLayout>
+                <Button
+                    android:id="@+id/btnEmployeeSubmit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_6sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_buttons"
+                    android:text="Submit"
+                    android:textColor="#fff" />
 
-</LinearLayout>
+                <Button
+                    android:id="@+id/btnOtherCancel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_6sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_buttons"
+                    android:text="Cancel"
+                    android:textColor="#fff" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

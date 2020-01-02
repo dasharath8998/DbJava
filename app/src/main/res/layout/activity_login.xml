@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/white"
     tools:context=".ui.LoginActivity">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar_app" />
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:elevation="@dimen/_1sdp"
+        android:id="@+id/aviLoadingLogin"
+        style="@style/AVLoadingIndicatorView"
+        android:visibility="gone"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_centerInParent="true"
+        app:indicatorName="TriangleSkewSpinIndicator"
+        app:indicatorColor="@color/colorPrimaryDark"
+        android:layout_height="@dimen/_50sdp"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -23,7 +34,7 @@
             <ImageView
                 android:id="@+id/imgLoginImage"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="@dimen/_180sdp"
                 android:src="@drawable/login_image"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
@@ -39,10 +50,9 @@
                 android:inputType="textEmailAddress"
                 android:background="@drawable/custom_edittext"
                 android:padding="8dp"
-                android:drawablePadding="10dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginLeft="17dp"
-                android:layout_marginRight="17dp"/>
+                android:layout_marginTop="@dimen/_17sdp"
+                android:layout_marginLeft="@dimen/_12sdp"
+                android:layout_marginRight="@dimen/_12sdp"/>
 
             <EditText
                 android:id="@+id/etLoginPassword"
@@ -54,10 +64,9 @@
                 android:inputType="textPassword"
                 android:background="@drawable/custom_edittext"
                 android:padding="8dp"
-                android:drawablePadding="10dp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginLeft="17dp"
-                android:layout_marginRight="17dp"/>
+                android:layout_marginLeft="@dimen/_12sdp"
+                android:layout_marginRight="@dimen/_12sdp"/>
 
             <TextView
                 android:text="Forget Password"
@@ -66,12 +75,12 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/etLoginPassword"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:textAlignment="textEnd"
-                android:textSize="17dp"
+                android:textSize="@dimen/_12sdp"
                 android:textStyle="bold"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="23dp"
+                android:layout_marginLeft="@dimen/_12sdp"
+                android:layout_marginRight="@dimen/_18sdp"
                 android:textColor="@color/colorPrimaryDark"/>
 
             <Button
@@ -81,12 +90,12 @@
                 android:layout_height="wrap_content"
                 android:padding="4dp"
                 android:text="Login"
-                android:textSize="24sp"
+                android:textSize="@dimen/_18sdp"
                 android:textColor="@android:color/background_light"
                 android:textAllCaps="false"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginLeft="19dp"
-                android:layout_marginRight="19dp"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginRight="@dimen/_15sdp"
                 android:background="@drawable/custom_buttons"/>
 
             <TextView
@@ -96,12 +105,12 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/btnLoginButton"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:textAlignment="center"
-                android:textSize="17dp"
+                android:textSize="@dimen/_15sdp"
                 android:textStyle="bold"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="23dp"
+                android:layout_marginLeft="@dimen/_12sdp"
+                android:layout_marginRight="@dimen/_12sdp"
                 android:textColor="@color/colorPrimaryDark"/>
         </RelativeLayout>
 

@@ -2,11 +2,16 @@ package com.dasharath.hatisamaj.utils
 
 import android.app.DatePickerDialog
 import android.content.Context
+import android.graphics.Bitmap
+import android.net.Uri
+import android.provider.MediaStore
 import android.text.format.DateFormat
 import android.widget.Toast
 import com.dasharath.hatisamaj.listeners.DateSetListener
+import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 object CommonUtils {
     const val AS_STUDENT = "As a student"
@@ -19,6 +24,42 @@ object CommonUtils {
     const val SELF_EMPLOYEE = "Self Employee"
     const val CATEGORY = "Category"
     const val IS_FROM_LOGIN = "is_from_login"
+
+    const val USER: String = "users"
+    const val EMAIL: String = "email"
+    const val PASS: String = "password"
+    const val USERTYPE: String = "userType"
+    const val NAME: String = "name"
+    const val DEVICE_TOKEN = "device_token"
+
+    const val PEOPLE = "people"
+    const val REGISTER_PEOPLE = "register_people"
+    const val PEOPLE_IMAGE = "people_image"
+    //personal
+    const val IMAGE_URL = "image_url"
+    const val REGISTER_AS = "register_as"
+    const val PERSONAL = "personal"
+    const val SNAME = "sName"
+    const val FNAME = "fName"
+    const val AGE = "age"
+    const val GENDER = "gender"
+    const val PR = "pr"
+    const val CL = "cl"
+    const val ADDRESS = "address"
+    const val STATUS = "status"
+    const val PENDING = "pending"
+
+    //other
+    const val EDUCATION = "education"
+    const val PERCENTAGE = "percentage"
+    const val JOB_TYPE = "job_type"
+    const val CLASS = "job_class"
+    const val DESIGNATION = "designation"
+    const val COMPANY_NAME = "company_name"
+    const val BUSINESS_NAME = "business_name"
+    const val BUSINESS_DETAIL = "business_detail"
+    const val MOBILE_NO = "mobile_no"
+    const val UID = "uid"
 }
 
 object Utils{
@@ -82,6 +123,13 @@ object Utils{
         val month = Integer.parseInt(DateFormat.format("mm",parseDate).toString())
         val year = Integer.parseInt(DateFormat.format("yyyy",parseDate).toString())
         return getAge(year,month-1,day)
+    }
+
+    fun getImageUri(inContext: Context, inImage: Bitmap): Uri? {
+        val bytes = ByteArrayOutputStream()
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        val path = MediaStore.Images.Media.insertImage(inContext.contentResolver, inImage, "Title", null)
+        return Uri.parse(path)
     }
 
     fun Context.toast(value: String){
