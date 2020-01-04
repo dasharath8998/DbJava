@@ -206,7 +206,7 @@
                     android:textSize="@dimen/_12sdp"
                     android:background="@drawable/custom_edittext"
                     android:hint="E.g. TCS"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textCapSentences"
                     android:maxLines="1"
                     android:padding="@dimen/_9sdp" />
 

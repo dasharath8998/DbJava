@@ -1,33 +1,48 @@
 package com.dasharath.hatisamaj.ui.notification
 
 
+import android.content.Intent
 import android.os.Bundle
-import android.text.Html
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.text.HtmlCompat
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.dasharath.hatisamaj.BR
 import com.dasharath.hatisamaj.R
 import com.dasharath.hatisamaj.databinding.ItemNotificationBinding
-import com.dasharath.hatisamaj.databinding.ItemPersonInfoBinding
 import com.dasharath.hatisamaj.model.NotificationModel
-import com.dasharath.hatisamaj.model.PersonModel
+import com.dasharath.hatisamaj.model.PersonDetailModel
+import com.dasharath.hatisamaj.ui.RegisteredPeopleActivity
+import com.dasharath.hatisamaj.utils.CommonUtils
+import com.dasharath.hatisamaj.utils.Utils.toast
 import com.github.nitrico.lastadapter.LastAdapter
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.fragment_notification.*
 import kotlinx.android.synthetic.main.fragment_notification.view.*
 
 class NotificationFragment : Fragment() {
 
     var notificationList: ArrayList<NotificationModel>? = null
+    var peopleList: ArrayList<PersonDetailModel>? = null
+
+    private var mAuth: FirebaseAuth? = null
+    private var currentUser: FirebaseUser? = null
+    private var db: FirebaseFirestore? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_notification, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        init()
+        listeners()
+        if(this@NotificationFragment.isVisible) getDataFirstTime(view)
         notificationList = ArrayList()
         for (i in 0..20){
             if(i % 2 == 0) {
@@ -37,12 +52,55 @@ class NotificationFragment : Fragment() {
             }
         }
         if(this@NotificationFragment.isVisible) {
-            setAdapter(view)
+            setAdapter()
         }
     }
 
-    private fun setAdapter(view: View) {
-        view.rvNotification.layoutManager = LinearLayoutManager(context)
+    private fun init() {
+        peopleList = ArrayList()
+        mAuth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
+        currentUser = mAuth?.currentUser
+    }
+
+    private fun listeners() {
+        linearStatus.setOnClickListener {
+            if(peopleList?.size == 0)
+                context?.toast("Currently you don't have any registration")
+            else
+                startActivity(Intent(context,RegisteredPeopleActivity::class.java).putExtra(CommonUtils.LIST,peopleList))
+
+        }
+    }
+
+
+    private fun getDataFirstTime(view: View) {
+        aviLoading.show()
+        db?.collection(CommonUtils.PEOPLE)
+            ?.whereEqualTo(CommonUtils.UID, currentUser?.uid.toString())?.get()
+            ?.addOnSuccessListener {
+                if (!it.isEmpty) {
+                    val peopleId = it.documents
+                    for (id in peopleId) {
+                        val data = id.toObject(PersonDetailModel::class.java)
+                        peopleList?.add(data!!)
+                    }
+                    Log.d("TAG", peopleList.toString())
+                    view.tvNewMessage.text = peopleList?.size.toString()
+                    view.aviLoading.hide()
+                } else {
+                    view.aviLoading.hide()
+                    context?.toast("No data found")
+                }
+            }
+            ?.addOnFailureListener {
+                view.aviLoading.hide()
+                Log.d("Failed", "Failed SearchFragment : ${it.toString()}")
+            }
+    }
+
+    private fun setAdapter() {
+        rvNotification.layoutManager = LinearLayoutManager(context)
         LastAdapter(notificationList!!, BR.notificationData).map<NotificationModel,ItemNotificationBinding>(R.layout.item_notification){
             onBind {
                 if(notificationList!![it.adapterPosition].gender == "male") {
@@ -56,7 +114,7 @@ class NotificationFragment : Fragment() {
                 val name = "<b>${notificationList!![it.adapterPosition].name}: </b> ${notificationList!![it.adapterPosition].description}"
                 it.binding.tvNotificationDescription.text = HtmlCompat.fromHtml(name,HtmlCompat.FROM_HTML_MODE_LEGACY)
             }
-        }.into(view.rvNotification)
+        }.into(rvNotification)
     }
 
 }

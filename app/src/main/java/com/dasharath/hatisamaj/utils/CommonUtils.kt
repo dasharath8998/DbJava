@@ -47,7 +47,7 @@ object CommonUtils {
     const val CL = "cl"
     const val ADDRESS = "address"
     const val STATUS = "status"
-    const val PENDING = "pending"
+    const val PENDING = "Pending"
 
     //other
     const val EDUCATION = "education"
@@ -60,6 +60,12 @@ object CommonUtils {
     const val BUSINESS_DETAIL = "business_detail"
     const val MOBILE_NO = "mobile_no"
     const val UID = "uid"
+    const val DOC_ID = "doc_id"
+
+    const val PASS_STATUS = "Pass"
+    const val PENDING_STATUS = "Pending"
+    const val REJECTED = "Rejected"
+    const val LIST = "List"
 }
 
 object Utils{
@@ -116,13 +122,44 @@ object Utils{
         return age
     }
 
-    fun stringToDate(date: String, format: String): String{
-        val simpleDate = SimpleDateFormat(format)
+    fun getAgeDiff(date: String): String{
+        val simpleDate = SimpleDateFormat("dd, mm, yyyy")
         val parseDate = simpleDate.parse(date)
         val day = Integer.parseInt(DateFormat.format("dd",parseDate).toString())
         val month = Integer.parseInt(DateFormat.format("mm",parseDate).toString())
         val year = Integer.parseInt(DateFormat.format("yyyy",parseDate).toString())
-        return getAge(year,month-1,day)
+
+        val dob = Calendar.getInstance()
+        val today = Calendar.getInstance()
+
+        dob.set(year, month, day)
+
+        var age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR)
+
+        if (today.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)) {
+            age--
+        }
+
+        return "${age+1} years old"
+
+//        return getAge(year,month-1,day)
+    }
+
+    fun g(year: Int, month: Int, day: Int): String {
+        val dob = Calendar.getInstance()
+        val today = Calendar.getInstance()
+
+        dob.set(year, month, day)
+
+        var age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR)
+
+        if (today.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)) {
+            age--
+        }
+
+        val ageInt = age + 1
+
+        return ageInt.toString()
     }
 
     fun getImageUri(inContext: Context, inImage: Bitmap): Uri? {

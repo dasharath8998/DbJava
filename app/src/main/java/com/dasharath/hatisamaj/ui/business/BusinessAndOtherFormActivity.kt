@@ -50,12 +50,14 @@ class BusinessAndOtherFormActivity : AppCompatActivity() {
 
     private fun storeDataToDB() {
 
+        val docId = db?.collection(CommonUtils.PEOPLE)?.document()?.id.toString()
         personData?.put(CommonUtils.JOB_TYPE, "")
         personData?.put(CommonUtils.EDUCATION, etEducation.text.toString())
         personData?.put(CommonUtils.CLASS, "")
         personData?.put(CommonUtils.DESIGNATION, "")
         personData?.put(CommonUtils.COMPANY_NAME, "")
         personData?.put(CommonUtils.MOBILE_NO, etMNumberBusinessOther.text.toString())
+        personData?.put(CommonUtils.DOC_ID, docId)
 
         if (title == CommonUtils.OTHER) {
             personData?.put(CommonUtils.BUSINESS_NAME, "")
@@ -67,7 +69,7 @@ class BusinessAndOtherFormActivity : AppCompatActivity() {
             personData?.put(CommonUtils.OTHER, "")
         }
 
-            db?.collection(CommonUtils.PEOPLE)?.add(personData!!)
+        db?.collection(CommonUtils.PEOPLE)?.document(docId)?.set(personData!!)
             ?.addOnSuccessListener { documentReference ->
                 aviLoading.hide()
                 onBackPressed()

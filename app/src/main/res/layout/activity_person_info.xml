@@ -29,6 +29,7 @@
             android:layout_width="@dimen/_90sdp"
             android:layout_height="@dimen/_90sdp"
             android:layout_marginTop="@dimen/_18sdp"
+            app:civ_border_width="@dimen/_3sdp"
             android:src="@drawable/ic_person_male" />
 
         <TextView
@@ -36,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
-            android:text="Name"
+            tools:text="Name"
             android:textColor="@color/orange_match_blue"
             android:textSize="@dimen/_18sdp"/>
 

@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar_app" />
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:elevation="@dimen/_1sdp"
+        android:id="@+id/aviLoading"
+        style="@style/AVLoadingIndicatorView"
+        android:visibility="gone"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_centerInParent="true"
+        app:indicatorName="BallClipRotatePulseIndicator"
+        app:indicatorColor="@color/colorPrimaryDark"
+        android:layout_height="@dimen/_50sdp"/>
 
     <androidx.core.widget.NestedScrollView
         android:layout_below="@+id/toolbar"
@@ -27,12 +39,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/_5sdp"
+                    android:inputType="textCapSentences"
                     android:background="@drawable/custom_edittext"
-                    android:hint="Search here..."
+                    android:hint="Search by name, job type and city"
                     android:padding="@dimen/_7sdp"
-                    android:textAlignment="viewStart"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textStyle="bold" />
+                    android:textAlignment="viewStart"/>
 
                 <ImageView
                     android:id="@+id/ivFilter"

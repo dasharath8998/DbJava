@@ -32,6 +32,7 @@
                         android:tint="@color/colorPrimary"/>
 
                     <TextView
+                        android:id="@+id/tvEducation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -63,6 +64,7 @@
                         android:tint="@color/colorPrimary"/>
 
                     <TextView
+                        android:id="@+id/tvPercentage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -93,6 +95,7 @@
                         android:padding="@dimen/_3sdp"/>
 
                     <TextView
+                        android:id="@+id/tvJobType"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -123,6 +126,7 @@
                         android:padding="@dimen/_3sdp"/>
 
                     <TextView
+                        android:id="@+id/tvClass"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -153,6 +157,7 @@
                         android:padding="@dimen/_3sdp"/>
 
                     <TextView
+                        android:id="@+id/tvDesignation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -184,6 +189,7 @@
                         android:padding="@dimen/_3sdp"/>
 
                     <TextView
+                        android:id="@+id/tvCompanyName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -215,6 +221,7 @@
                         android:padding="@dimen/_3sdp"/>
 
                     <TextView
+                        android:id="@+id/tvBusinessName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -245,6 +252,7 @@
                         android:padding="@dimen/_3sdp"/>
 
                     <TextView
+                        android:id="@+id/tvOther"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -257,6 +265,24 @@
                 </RelativeLayout>
 
             </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="Set status"
+                android:layout_marginBottom="@dimen/_4sdp"
+                android:textSize="@dimen/_14sdp" />
+
+            <Spinner
+                android:id="@+id/spinnerStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
+                android:entries="@array/statusType"
+                android:padding="@dimen/_8sdp"/>
 
         </LinearLayout>
 

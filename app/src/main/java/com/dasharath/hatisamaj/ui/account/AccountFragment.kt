@@ -56,8 +56,7 @@ class AccountFragment : Fragment() {
             isLoggedIn = true
 
             userData = db?.collection(CommonUtils.USER)?.document(currentUser?.uid!!)
-            val source = Source.CACHE
-            userData?.get(source)?.addOnCompleteListener { task ->
+            userData?.get()?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     view.aviLoadingAccount.hide()
                     data = task.result?.toObject(UserData::class.java)

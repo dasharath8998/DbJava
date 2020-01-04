@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_add"
                 android:layout_alignParentEnd="true"
-                android:tint="@color/colorPrimary"/>
+                android:tint="@color/dark"/>
 
         </RelativeLayout>
 

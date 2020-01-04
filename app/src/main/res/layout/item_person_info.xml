@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -37,19 +38,22 @@
                 android:orientation="vertical">
 
                 <TextView
+                    tools:text="Dasharathsinh"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@{personData.name}" />
 
                 <TextView
+                    android:id="@+id/tvAgeSearch"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@{personData.age}" />
+                    android:layout_height="wrap_content"/>
 
                 <TextView
+                    android:id="@+id/tvRegisterAsSearch"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@{personData.register_as}" />
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 

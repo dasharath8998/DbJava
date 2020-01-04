@@ -1,5 +1,7 @@
 package com.dasharath.hatisamaj.model
 
+import java.io.Serializable
+
 data class PersonModel(
     var image: String,
     var name: String,
@@ -44,7 +46,7 @@ data class RegisterPeopleModel(
     data class PersonUniqueId(
     var uniqueId: PersonDetailModel
 ){
-    constructor() : this(PersonDetailModel("","","","","","","","","","","","","","","","","","","",""))
+    constructor() : this(PersonDetailModel("","","","","","","","","","","","","","","","","","","","","",""))
 }
 
 data class PersonDetailModel(
@@ -55,6 +57,7 @@ data class PersonDetailModel(
     var business_name: String,
     var cl: String,
     var job_class: String,
+    var gender: String,
     var company_name: String,
     var designation: String,
     var education: String,
@@ -66,10 +69,11 @@ data class PersonDetailModel(
     var name: String,
     var pr: String,
     var register_as: String,
+    var doc_id: String,
     var sName: String,
     var status: String
-) {
-    constructor() : this("","","","","","","","","","","","","","","","","","","","")
+): Serializable {
+    constructor() : this("","","","","","","","","","","","","","","","","","","","","","")
 }
 
 data class UserData(

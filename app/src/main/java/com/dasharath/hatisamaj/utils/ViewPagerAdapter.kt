@@ -6,9 +6,10 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.dasharath.hatisamaj.ui.personinfotab.OtherInfo
 import com.dasharath.hatisamaj.ui.personinfotab.PersonalInfo
+import java.io.Serializable
 
 
-class ViewPagerAdapter(fm: FragmentManager, var category: String) : FragmentPagerAdapter(fm,  BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class ViewPagerAdapter(fm: FragmentManager, var personData: Serializable) : FragmentPagerAdapter(fm,  BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getItem(position: Int): Fragment {
         var fragment: Fragment? = null
@@ -18,7 +19,7 @@ class ViewPagerAdapter(fm: FragmentManager, var category: String) : FragmentPage
             fragment = OtherInfo()
         }
         val args = Bundle()
-        args.putString(CommonUtils.CATEGORY,category)
+        args.putSerializable(CommonUtils.PERSONAL,personData)
         fragment?.arguments = args
         return fragment!!
     }

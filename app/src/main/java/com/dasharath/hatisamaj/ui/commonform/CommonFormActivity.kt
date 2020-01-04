@@ -7,7 +7,9 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
+import android.view.View
 import android.widget.EditText
+import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -106,12 +108,16 @@ class CommonFormActivity : AppCompatActivity() {
     }
 
     private fun storeFormData() {
+        val selectedId: Int = rGroup.checkedRadioButtonId
+        val selectedButton = findViewById<View>(selectedId) as RadioButton
+
          personalData = hashMapOf(
             CommonUtils.NAME to etName.text.toString(),
             CommonUtils.FNAME to etFName.text.toString(),
             CommonUtils.SNAME to etSName.text.toString(),
             CommonUtils.EMAIL to etEmail.text.toString(),
-            CommonUtils.AGE to tvYear.text.toString(),
+            CommonUtils.AGE to etBirthday.text.toString(),
+            CommonUtils.GENDER to selectedButton.text.toString(),
             CommonUtils.PR to etPResidence.text.toString(),
             CommonUtils.CL to etCLocationo.text.toString(),
             CommonUtils.ADDRESS to etAddress.text.toString(),

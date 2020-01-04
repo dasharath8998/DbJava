@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
@@ -40,6 +39,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tvPersonName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -83,6 +83,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tvPersonEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -125,6 +126,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tvPersonBD"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -167,6 +169,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tvPersonGender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -209,6 +212,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tvPersonPR"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -251,6 +255,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tvPersonCL"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -293,6 +298,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tvPersonAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"

@@ -80,6 +80,7 @@ class EmployeeFormActivity : AppCompatActivity() {
             classText = selectedButton.text.toString()
         }
 
+        val docId = db?.collection(CommonUtils.PEOPLE)?.document()?.id.toString()
         personData?.put(CommonUtils.JOB_TYPE, spinnerEmployeeType.selectedItem.toString())
         personData?.put(CommonUtils.EDUCATION, etEducation.text.toString())
         personData?.put(CommonUtils.CLASS, classText)
@@ -89,9 +90,10 @@ class EmployeeFormActivity : AppCompatActivity() {
         personData?.put(CommonUtils.BUSINESS_NAME, "")
         personData?.put(CommonUtils.BUSINESS_DETAIL, "")
         personData?.put(CommonUtils.UID, currentUserId)
+        personData?.put(CommonUtils.DOC_ID, docId)
         personData?.put(CommonUtils.OTHER, etOtherJobType.text.toString())
 
-        db?.collection(CommonUtils.PEOPLE)?.add(personData!!)
+        db?.collection(CommonUtils.PEOPLE)?.document(docId)?.set(personData!!)
             ?.addOnSuccessListener {
                 aviLoading.hide()
                 onBackPressed()
@@ -101,18 +103,6 @@ class EmployeeFormActivity : AppCompatActivity() {
                 aviLoading.hide()
                 Log.w("TAG", "Error adding document", e)
             }
-
-//        db?.collection(CommonUtils.PEOPLE)?.document(currentUserId!!)?.collection(CommonUtils.REGISTER_PEOPLE)?.add(personData!!)
-//            ?.addOnSuccessListener { documentReference ->
-//                aviLoading.hide()
-//                onBackPressed()
-//                toast("Detail submitted successfully")
-//                Log.d("TAG", "DocumentSnapshot added with $documentReference")
-//            }
-//            ?.addOnFailureListener { e ->
-//                aviLoading.hide()
-//                Log.w("TAG", "Error adding document", e)
-//            }
     }
 
     private fun showCompanyName(){
