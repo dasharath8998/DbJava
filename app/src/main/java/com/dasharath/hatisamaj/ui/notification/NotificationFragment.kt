@@ -114,6 +114,8 @@ class NotificationFragment : Fragment() {
                     view.tvNewMessage.text = peopleList?.size.toString()
                     view.aviLoading.hide()
                 } else {
+                    peopleList?.clear()
+                    view.tvNewMessage.text = peopleList?.size.toString()
                     view.aviLoading.hide()
                     context?.toast("No data found")
                 }

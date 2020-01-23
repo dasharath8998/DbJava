@@ -66,7 +66,7 @@ class LoginActivity : AppCompatActivity() {
             .setPositiveButton("Get Link") { dialog, which ->
                 mAuth?.sendPasswordResetEmail(etLoginEmail.text.toString())
                     ?.addOnSuccessListener {
-                        toast("Password reset link sent to your mail")
+                        toast("Password reset link sent to your mail ${etLoginEmail.text.toString()}")
                         dialog.dismiss()
                     }
                     ?.addOnFailureListener {

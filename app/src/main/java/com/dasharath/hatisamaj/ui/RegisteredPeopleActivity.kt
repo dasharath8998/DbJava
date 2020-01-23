@@ -119,13 +119,21 @@ class RegisteredPeopleActivity : AppCompatActivity(),ConnectivityReceiver.Connec
                 db?.collection(CommonUtils.PEOPLE)?.document(currentItem?.doc_id!!)
                     ?.delete()
                     ?.addOnSuccessListener {void ->
-                        firebaseStorage?.getReferenceFromUrl(currentItem.image_url)!!.delete().addOnSuccessListener {
+                        if(currentItem.image_url == ""){
                             aviLoading.hide()
                             toast("Successfully deleted!")
                             peopleList?.remove(currentItem)
                             rvRegisterPeople.adapter?.notifyItemRemoved(position)
                             setResult(Activity.RESULT_OK, Intent())
-                            Log.d("TAG", "DocumentSnapshot successfully deleted!")
+                        } else {
+                            firebaseStorage?.getReferenceFromUrl(currentItem.image_url)!!.delete().addOnSuccessListener {
+                                aviLoading.hide()
+                                toast("Successfully deleted!")
+                                peopleList?.remove(currentItem)
+                                rvRegisterPeople.adapter?.notifyItemRemoved(position)
+                                setResult(Activity.RESULT_OK, Intent())
+                                Log.d("TAG", "DocumentSnapshot successfully deleted!")
+                            }
                         }
                     }
                     ?.addOnFailureListener { e -> Log.d("TAG", "Error deleting document", e) }
