@@ -69,11 +69,12 @@
                 android:layout_marginRight="@dimen/_12sdp"/>
 
             <TextView
-                android:text="Forget Password"
                 android:id="@+id/tvForgotPassword"
-                android:layout_width="match_parent"
+                android:text="Forget Password"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                android:layout_alignParentEnd="true"
                 android:layout_below="@id/etLoginPassword"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:textAlignment="textEnd"

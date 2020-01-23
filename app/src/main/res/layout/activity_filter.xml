@@ -41,6 +41,12 @@
                 android:layout_height="@dimen/_35sdp"/>
 
             <CheckBox
+                android:id="@+id/checkboxSocial"
+                android:text="Social worker"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"/>
+
+            <CheckBox
                 android:id="@+id/checkboxOther"
                 android:text="Other"
                 android:layout_width="match_parent"

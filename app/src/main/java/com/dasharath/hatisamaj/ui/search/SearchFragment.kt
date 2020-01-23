@@ -1,12 +1,10 @@
 package com.dasharath.hatisamaj.ui.search
 
-
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
-import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
@@ -22,6 +20,7 @@ import com.dasharath.hatisamaj.model.PersonDetailModel
 import com.dasharath.hatisamaj.ui.FilterActivity
 import com.dasharath.hatisamaj.ui.personinfo.PersonInfoActivity
 import com.dasharath.hatisamaj.utils.CommonUtils
+import com.dasharath.hatisamaj.utils.SharedPrefUtils
 import com.dasharath.hatisamaj.utils.Utils.getAgeDiff
 import com.dasharath.hatisamaj.utils.Utils.toast
 import com.github.nitrico.lastadapter.LastAdapter
@@ -47,8 +46,17 @@ class SearchFragment : Fragment() {
     var filterList = arrayListOf<String>()
     var adminStatus: Boolean = false
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_search, container, false)
+    val requestCodePersonDetail = 111
+    val requestCodeFilter = 123
+    var globalView: View? = null
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        globalView = inflater.inflate(R.layout.fragment_search, container, false)
+        return globalView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -66,18 +74,35 @@ class SearchFragment : Fragment() {
         db = FirebaseFirestore.getInstance()
         db?.firestoreSettings = settings!!
         currentUser = mAuth?.currentUser
-        toolbar.ivAddPeople.visibility = View.VISIBLE
+        toolbar.tvTitle.text = "Search"
+        if(SharedPrefUtils().getUserType(context!!) == CommonUtils.ADMIN)
+            toolbar.radioPendingStatus.visibility = View.VISIBLE
         tempPeopleList = ArrayList()
     }
 
     private fun listener(view: View) {
+
         view.ivFilter.setOnClickListener {
             startActivityForResult(
                 Intent(context, FilterActivity::class.java).putExtra(
                     "List",
                     filterList
-                ), 123
+                ), requestCodeFilter
             )
+        }
+
+        toolbar.radioPendingStatus.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(isChecked){
+                adminStatus = true
+                filterList.clear()
+                getDataFirstTime(CommonUtils.PENDING_STATUS)
+                context!!.toast("Pending")
+            } else {
+                adminStatus = false
+                filterList.clear()
+                getDataFirstTime(CommonUtils.PASS_STATUS)
+                context!!.toast("Pass")
+            }
         }
 
         toolbar.ivAddPeople.setOnClickListener {
@@ -85,13 +110,21 @@ class SearchFragment : Fragment() {
                 adminStatus = true
                 filterList.clear()
                 getDataFirstTime(CommonUtils.PENDING_STATUS)
-                toolbar.ivAddPeople.setColorFilter(ContextCompat.getColor(context!!, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_IN)
+                toolbar.ivAddPeople.setColorFilter(
+                    ContextCompat.getColor(
+                        context!!,
+                        R.color.colorPrimary
+                    ), android.graphics.PorterDuff.Mode.SRC_IN
+                )
                 context!!.toast("Pending")
             } else {
                 adminStatus = false
                 filterList.clear()
                 getDataFirstTime(CommonUtils.PASS_STATUS)
-                toolbar.ivAddPeople.setColorFilter(ContextCompat.getColor(context!!, R.color.dark), android.graphics.PorterDuff.Mode.SRC_IN)
+                toolbar.ivAddPeople.setColorFilter(
+                    ContextCompat.getColor(context!!, R.color.dark),
+                    android.graphics.PorterDuff.Mode.SRC_IN
+                )
                 context!!.toast("Pass")
             }
         }
@@ -104,38 +137,38 @@ class SearchFragment : Fragment() {
             override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {
                 peopleList?.clear()
                 tempPeopleList?.forEachIndexed { index, personDetailModel ->
-                    if(personDetailModel.name.toLowerCase().contains(charSequence.toString().toLowerCase())){
-                        if(!peopleList?.contains(personDetailModel)!!) {
+                    if (personDetailModel.name.toLowerCase().contains(charSequence.toString().toLowerCase())) {
+                        if (!peopleList?.contains(personDetailModel)!!) {
                             peopleList?.add(personDetailModel)
                         }
                     }
 
-                    if(personDetailModel.sName.toLowerCase().contains(charSequence.toString().toLowerCase())){
-                        if(!peopleList?.contains(personDetailModel)!!) {
+                    if (personDetailModel.sName.toLowerCase().contains(charSequence.toString().toLowerCase())) {
+                        if (!peopleList?.contains(personDetailModel)!!) {
                             peopleList?.add(personDetailModel)
                         }
                     }
 
-                    if(personDetailModel.fName.toLowerCase().contains(charSequence.toString().toLowerCase())){
-                        if(!peopleList?.contains(personDetailModel)!!) {
+                    if (personDetailModel.fName.toLowerCase().contains(charSequence.toString().toLowerCase())) {
+                        if (!peopleList?.contains(personDetailModel)!!) {
                             peopleList?.add(personDetailModel)
                         }
                     }
 
-                    if(personDetailModel.cl.toLowerCase().contains(charSequence.toString().toLowerCase())){
-                        if(!peopleList?.contains(personDetailModel)!!) {
+                    if (personDetailModel.cl.toLowerCase().contains(charSequence.toString().toLowerCase())) {
+                        if (!peopleList?.contains(personDetailModel)!!) {
                             peopleList?.add(personDetailModel)
                         }
                     }
 
-                    if(personDetailModel.pr.toLowerCase().contains(charSequence.toString().toLowerCase())){
-                        if(!peopleList?.contains(personDetailModel)!!) {
+                    if (personDetailModel.pr.toLowerCase().contains(charSequence.toString().toLowerCase())) {
+                        if (!peopleList?.contains(personDetailModel)!!) {
                             peopleList?.add(personDetailModel)
                         }
                     }
 
-                    if(personDetailModel.job_type.toLowerCase().contains(charSequence.toString().toLowerCase())){
-                        if(!peopleList?.contains(personDetailModel)!!) {
+                    if (personDetailModel.job_type.toLowerCase().contains(charSequence.toString().toLowerCase())) {
+                        if (!peopleList?.contains(personDetailModel)!!) {
                             peopleList?.add(personDetailModel)
                         }
                     }
@@ -155,45 +188,63 @@ class SearchFragment : Fragment() {
                 if (!it.isEmpty) {
                     val peopleId = it.documents
                     peopleList = ArrayList()
+                    tempPeopleList = ArrayList()
                     for (id in peopleId) {
                         val data = id.toObject(PersonDetailModel::class.java)
                         peopleList?.add(data!!)
                     }
                     tempPeopleList?.addAll(peopleList!!)
                     Log.d("TAG", peopleList.toString())
-                    if(this@SearchFragment.isVisible) setAdapter()
+                    if (this@SearchFragment.isVisible) setAdapter()
 
                 } else {
-                    aviLoading.hide()
+                    globalView?.aviLoading?.hide()
+                    if(peopleList == null){
+                        peopleList = ArrayList()
+                    } else {
+                        peopleList?.clear()
+                    }
+                    if (this@SearchFragment.isVisible) setAdapter()
                     context?.toast("No data found")
                 }
             }
             ?.addOnFailureListener {
-                aviLoading.hide()
-                Log.d("Failed", "Failed SearchFragment : ${it.toString()}")
+                globalView?.aviLoading?.hide()
+                if(peopleList == null){
+                    peopleList = ArrayList()
+                } else {
+                    peopleList?.clear()
+                }
+                if (this@SearchFragment.isVisible) setAdapter()
+                Log.d("Failed", "Failed SearchFragment : $it")
             }
     }
 
     private fun getDataByFilter(status: String) {
         aviLoading.show()
-        db?.collection(CommonUtils.PEOPLE)
-            ?.whereIn(CommonUtils.REGISTER_AS, filterList)
-            ?.whereEqualTo(CommonUtils.STATUS,status)
-            ?.get()
-            ?.addOnSuccessListener {
+        db?.collection(CommonUtils.PEOPLE)?.whereIn(CommonUtils.REGISTER_AS, filterList)
+            ?.whereEqualTo(CommonUtils.STATUS, status)
+            ?.get()?.addOnSuccessListener {
                 aviLoading.hide()
                 if (!it.isEmpty) {
                     val peopleId = it.documents
                     peopleList = ArrayList()
+                    tempPeopleList = ArrayList()
                     for (id in peopleId) {
                         val data = id.toObject(PersonDetailModel::class.java)
                         peopleList?.add(data!!)
                     }
                     tempPeopleList?.addAll(peopleList!!)
                     Log.d("TAG", peopleList.toString())
-                    if(this@SearchFragment.isVisible) setAdapter()
+                    if (this@SearchFragment.isVisible) setAdapter()
                 } else {
                     aviLoading.hide()
+                    if(peopleList == null){
+                        peopleList = ArrayList()
+                    } else {
+                        peopleList?.clear()
+                    }
+                    if (this@SearchFragment.isVisible) setAdapter()
                     context?.toast("No data found")
                 }
             }
@@ -215,25 +266,23 @@ class SearchFragment : Fragment() {
                 when (currentItem.register_as) {
                     CommonUtils.AS_EMPLOYEE -> it.binding.tvRegisterAsSearch.text = "Employee"
                     CommonUtils.AS_BUSINESS -> it.binding.tvRegisterAsSearch.text = "Business"
+                    CommonUtils.AS_SOCIAL_WORKER -> it.binding.tvRegisterAsSearch.text = "Social worker"
                     else -> it.binding.tvRegisterAsSearch.text = "Other"
                 }
                 aviLoading.hide()
             }
 
             onClick {
-                startActivity(
-                    Intent(
-                        activity,
-                        PersonInfoActivity::class.java
-                    ).putExtra(CommonUtils.PERSONAL, peopleList!![it.adapterPosition])
-                )
+                val intent = Intent(activity, PersonInfoActivity::class.java)
+                intent.putExtra(CommonUtils.PERSONAL, peopleList!![it.adapterPosition])
+                startActivityForResult(intent, requestCodePersonDetail)
             }
         }.into(rvSearch)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 123) {
+        if (requestCode == requestCodeFilter) {
             if (resultCode == Activity.RESULT_OK) {
                 filterList = data?.getStringArrayListExtra("List")!!
                 if (filterList.size != 0)
@@ -248,6 +297,14 @@ class SearchFragment : Fragment() {
                         getDataFirstTime(CommonUtils.PASS_STATUS)
 
             }
+        }
+        if (requestCode == requestCodePersonDetail) {
+            if (resultCode == Activity.RESULT_OK)
+                if (adminStatus)
+                    getDataFirstTime(CommonUtils.PENDING_STATUS)
+                else
+                    getDataFirstTime(CommonUtils.PASS_STATUS)
+
         }
     }
 }

@@ -20,7 +20,49 @@
         app:indicatorColor="@color/colorPrimaryDark"
         android:layout_height="@dimen/_50sdp"/>
 
+    <LinearLayout
+        android:id="@+id/linearSignIn"
+        android:visibility="gone"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_doors"
+            android:tint="@color/thin_primary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
+            android:text="To see your current registration status you need to sign in or register first"
+            android:textSize="@dimen/_16sdp" />
+
+        <Button
+            android:id="@+id/btnAccountLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:backgroundTint="@color/thin_primary"
+            android:layout_centerInParent="true"
+            android:background="@drawable/custom_buttons"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_10sdp"
+            android:text="@string/sign_in_or_sign_up"
+            android:textAllCaps="false"
+            android:textColor="@android:color/background_light"
+            android:textSize="@dimen/_12sdp" />
+
+    </LinearLayout>
+
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedNotification"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar">
@@ -62,7 +104,7 @@
                         android:layout_marginTop="6dp"
                         android:background="@drawable/custom_circle"
                         android:gravity="center"
-                        tools:text="3"
+                        android:text="0"
                         android:textColor="@android:color/white" />
 
                 </FrameLayout>

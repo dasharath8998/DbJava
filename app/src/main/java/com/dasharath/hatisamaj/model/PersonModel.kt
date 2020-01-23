@@ -19,34 +19,14 @@ data class NotificationModel(
 )
 
 data class PostModel(
-    var profileImage: String,
-    var image: String,
-    var userName: String,
-    var description: String
-)
-
-data class People(
-    var people: ArrayList<PeopleRegisterUid>
-) {
-    constructor() : this(ArrayList())
-}
-
-data class PeopleRegisterUid(
-    var person_uid: RegisterPeopleModel
-) {
-    constructor() : this(RegisterPeopleModel(ArrayList()))
-}
-
-data class RegisterPeopleModel(
-    var register_people: ArrayList<PersonUniqueId>
+    var description: String,
+    var doc_id: String,
+    var like_count: String,
+    var liked_user: String,
+    var image_url: String,
+    var post_date: String
 ){
-    constructor() : this(ArrayList())
-}
-
-    data class PersonUniqueId(
-    var uniqueId: PersonDetailModel
-){
-    constructor() : this(PersonDetailModel("","","","","","","","","","","","","","","","","","","","","",""))
+    constructor(): this("","","","","","")
 }
 
 data class PersonDetailModel(
@@ -82,6 +62,6 @@ data class UserData(
     var name: String,
     var password: String,
     var userType: String
-){
+): Serializable{
     constructor() : this("","","","","")
 }

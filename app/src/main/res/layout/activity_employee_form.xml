@@ -2,7 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/mainEmployee"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/form_gray"
     android:orientation="vertical">
 
@@ -54,6 +56,7 @@
             <LinearLayout
                 android:id="@+id/linearOther"
                 android:visibility="gone"
+                tools:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -88,6 +91,7 @@
             <RadioGroup
                 android:id="@+id/rgGClass"
                 android:visibility="gone"
+                tools:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_7sdp"
@@ -184,6 +188,7 @@
             <LinearLayout
                 android:id="@+id/linearCompany"
                 android:visibility="gone"
+                tools:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">

@@ -4,10 +4,12 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.CheckBox
 import com.dasharath.hatisamaj.R
 import com.dasharath.hatisamaj.utils.CommonUtils
 import kotlinx.android.synthetic.main.activity_filter.*
+import kotlinx.android.synthetic.main.toolbar_app.view.*
 
 class FilterActivity : AppCompatActivity() {
 
@@ -20,6 +22,8 @@ class FilterActivity : AppCompatActivity() {
     }
 
     private fun init() {
+        toolbar.tvTitle.text = "Filters"
+        toolbar.ivBack.visibility = View.VISIBLE
         filterList = intent.getStringArrayListExtra("List")
         if (filterList.contains(CommonUtils.AS_BUSINESS)) {
             checkboxBusiness.isChecked = true
@@ -27,15 +31,24 @@ class FilterActivity : AppCompatActivity() {
         if (filterList.contains(CommonUtils.AS_EMPLOYEE)) {
             checkboxEmployee.isChecked = true
         }
+        if (filterList.contains(CommonUtils.AS_SOCIAL_WORKER)) {
+            checkboxSocial.isChecked = true
+        }
         if (filterList.contains(CommonUtils.OTHER)) {
             checkboxOther.isChecked = true
         }
     }
 
     private fun listeners() {
+
+        toolbar.ivBack.setOnClickListener {
+            onBackPressed()
+        }
+
         tvApply.setOnClickListener {
             checkboxEmployee.isCheckedOrNot(CommonUtils.AS_EMPLOYEE)
             checkboxBusiness.isCheckedOrNot(CommonUtils.AS_BUSINESS)
+            checkboxSocial.isCheckedOrNot(CommonUtils.AS_SOCIAL_WORKER)
             checkboxOther.isCheckedOrNot(CommonUtils.OTHER)
             setReturnIntent()
         }
@@ -43,6 +56,7 @@ class FilterActivity : AppCompatActivity() {
         tvClear.setOnClickListener {
             checkboxEmployee.isChecked = false
             checkboxBusiness.isChecked = false
+            checkboxSocial.isChecked = false
             checkboxOther.isChecked = false
             filterList.clear()
             setReturnIntent()

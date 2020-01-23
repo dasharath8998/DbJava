@@ -17,6 +17,11 @@
     <string name="terms_of_conditions">Terms of conditions</string>
     <string name="sign_out">Sign out</string>
     <string name="sign_in_or_sign_up">Sign in or Sign up</string>
+    <string name="yes">Yes</string>
+    <string name="delete">Delete</string>
+    <string name="update">Update</string>
+    <string name="no">Cancel</string>
+    <string name="SS">Social servant</string>
 
     <string-array name="studiesType">
         <item>Select</item>
@@ -41,4 +46,5 @@
         <item>Pass</item>
         <item>Rejected</item>
     </string-array>
+
 </resources>

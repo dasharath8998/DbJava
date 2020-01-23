@@ -1,12 +1,15 @@
 package com.dasharath.hatisamaj.utils
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.Matrix
 import android.net.Uri
 import android.provider.MediaStore
 import android.text.format.DateFormat
 import android.widget.Toast
+import com.dasharath.hatisamaj.R
 import com.dasharath.hatisamaj.listeners.DateSetListener
 import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
@@ -16,7 +19,8 @@ import java.util.*
 object CommonUtils {
     const val AS_STUDENT = "As a student"
     const val AS_EMPLOYEE = "As an employee"
-    const val AS_BUSINESS = "As a businessman"
+    const val AS_BUSINESS = "As a business"
+    const val AS_SOCIAL_WORKER = "As a social worker"
     const val OTHER = "Other"
     const val TITLE = "Title"
     const val GOVR_JOB = "Government Job"
@@ -26,6 +30,7 @@ object CommonUtils {
     const val IS_FROM_LOGIN = "is_from_login"
 
     const val USER: String = "users"
+    const val USER_PREF: String = "user"
     const val EMAIL: String = "email"
     const val PASS: String = "password"
     const val USERTYPE: String = "userType"
@@ -35,6 +40,7 @@ object CommonUtils {
     const val PEOPLE = "people"
     const val REGISTER_PEOPLE = "register_people"
     const val PEOPLE_IMAGE = "people_image"
+    const val POST_IMAGE = "post_image"
     //personal
     const val IMAGE_URL = "image_url"
     const val REGISTER_AS = "register_as"
@@ -66,6 +72,26 @@ object CommonUtils {
     const val PENDING_STATUS = "Pending"
     const val REJECTED = "Rejected"
     const val LIST = "List"
+    const val IS_FROM_REGISTER_PEOPLE = "isFromRegisterPeople"
+    const val PERSON_DATA = "personData"
+    const val DATA = "Data"
+    const val IS_CHANGED = "is_changed"
+
+    const val POSTS = "posts"
+    const val POST_DATE = "post_date"
+    const val POST_TIME = "post_time"
+    const val DESCRIPTION = "description"
+    const val LIKE_COUNT = "like_count"
+    const val LIKED_USER = "liked_user"
+
+    const val ADMIN = "admin"
+    const val HATI_SAMAJ = "hati_samaj"
+
+    const val UTILS = "utils"
+    const val APP_RUNNIG = "appRunning"
+    const val APP_VERSION = "appVersion"
+    const val IS_FORCED = "isForced"
+    const val UPDATE_MESSAGE = "updateMessage"
 }
 
 object Utils{
@@ -171,5 +197,32 @@ object Utils{
 
     fun Context.toast(value: String){
         Toast.makeText(this,value,Toast.LENGTH_LONG).show()
+    }
+
+    fun getResizedBitmap(bm: Bitmap, newWidth: Int, newHeight: Int): Bitmap? {
+        val width = bm.width
+        val height = bm.height
+        val scaleWidth = newWidth.toFloat() / width
+        val scaleHeight = newHeight.toFloat() / height
+        // CREATE A MATRIX FOR THE MANIPULATION
+        val matrix = Matrix()
+        // RESIZE THE BIT MAP
+        matrix.postScale(scaleWidth, scaleHeight)
+        // "RECREATE" THE NEW BITMAP
+        return Bitmap.createBitmap(
+            bm, 0, 0, width, height, matrix, false
+        )
+    }
+
+    fun showAlert(context: Context, msg: String){
+        AlertDialog.Builder(context)
+            .setTitle("Hati samaj")
+            .setMessage(msg)
+            .setPositiveButton(
+                "Ok"
+            ) { dialog, which ->
+                dialog.dismiss()
+            }
+            .show()
     }
 }

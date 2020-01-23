@@ -1,106 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="postData"
             type="com.dasharath.hatisamaj.model.PostModel" />
     </data>
 
-    <LinearLayout
-        android:orientation="vertical"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_7sdp">
+        android:layout_margin="@dimen/_7sdp"
+        android:elevation="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/_5sdp"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:src="@color/colorPrimary" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{postData.userName}"
-                android:layout_weight="1"
-                tools:text="Dasharath"
-                android:layout_gravity="center"
-                android:textSize="@dimen/_10sdp"
-                android:layout_marginStart="@dimen/_8sdp"
-                android:textStyle="bold"
-                android:textColor="@color/dark" />
-
-            <ImageView
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_other" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
             android:orientation="vertical">
 
-            <ImageView
+            <LinearLayout
+                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_170sdp"
-                android:src="@color/colorPrimaryDark" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="@{postData.post_date}"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="Dasharath" />
+
+                <ImageView
+                    android:id="@+id/ivDelete"
+                    android:visibility="gone"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_delete_registration"
+                    android:tint="@color/colorPrimary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_250sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:src="@{postData.image_url}" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvCaption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                tools:text="Description is the pattern of narrative development that aims to make vivid a place, object, character, or group. Description is one of four rhetorical modes, along with exposition, argumentation, and narration. In practice it would be difficult to write literatu"
+                android:gravity="center"
+                android:text="@{postData.description}"
+                android:textSize="@dimen/_11sdp" />
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivLike"
+                    android:layout_marginTop="@dimen/_1sdp"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:src="@drawable/ic_unlike"
+                    android:tint="@color/colorPrimary" />
+
+                <TextView
+                    android:id="@+id/tvLikeCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="10"
+                    android:text="@{postData.like_count}"
+                    android:textSize="@dimen/_13sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_5sdp"/>
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginStart="@dimen/_7sdp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/ivLike"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:tint="@color/colorPrimary"
-                android:src="@drawable/ic_unlike" />
-
-            <ImageView
-                android:id="@+id/ivComment"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_toEndOf="@id/ivLike"
-                android:src="@drawable/ic_comment"
-                android:tint="@color/colorPrimary"
-                android:layout_marginStart="@dimen/_12sdp" />
-
-            <ImageView
-                android:id="@+id/ivDownload"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="@dimen/_7sdp"
-                android:src="@drawable/ic_download"
-                android:layout_gravity="end"
-                android:tint="@color/colorPrimary"
-                android:layout_marginStart="@dimen/_12sdp" />
-
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/tvCaption"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_5sdp"
-            android:textSize="@dimen/_11sdp"
-            android:text="@{postData.description}" />
-
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </layout>

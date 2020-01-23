@@ -32,8 +32,8 @@
                     android:id="@+id/ivProfileRegister"
                     tools:src="@color/colorPrimaryDark"
                     app:civ_border_width="@dimen/_2sdp"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
+                    android:layout_width="@dimen/_55sdp"
+                    android:layout_height="@dimen/_55sdp"
                     android:src="@{registerPeople.image_url}"
                     android:layout_margin="@dimen/_4sdp" />
 
@@ -101,7 +101,7 @@
 
         <TextView
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="@dimen/_45sdp"
+            android:layout_marginTop="@dimen/_48sdp"
             android:layout_marginEnd="@dimen/_14sdp"
             android:text="@{registerPeople.status}"
             tools:text="Pass"

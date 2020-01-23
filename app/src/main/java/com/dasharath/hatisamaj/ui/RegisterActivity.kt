@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.android.synthetic.main.toolbar_app.view.*
 
 
 class RegisterActivity : AppCompatActivity() {
@@ -32,6 +33,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun init() {
         mAuth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
+        toolbar.tvTitle.text = "Register"
     }
 
     private fun listeners() {

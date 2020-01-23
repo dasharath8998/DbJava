@@ -5,10 +5,13 @@ import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
 import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.dasharath.hatisamaj.MainActivity
 import com.dasharath.hatisamaj.R
+import com.dasharath.hatisamaj.model.UserData
 import com.dasharath.hatisamaj.utils.CommonUtils
+import com.dasharath.hatisamaj.utils.SharedPrefUtils
 import com.dasharath.hatisamaj.utils.Utils.toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
@@ -16,6 +19,7 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.toolbar_app.view.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -33,6 +37,7 @@ class LoginActivity : AppCompatActivity() {
     private fun init() {
         mAuth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
+        toolbar.tvTitle.text = "Sign in"
     }
 
     private fun listeners() {
@@ -49,10 +54,39 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
         }
 
+        tvForgotPassword.setOnClickListener {
+            if (formValid())
+                showPasswordResetDialog()
+        }
+
+    }
+
+    private fun showPasswordResetDialog() {
+        AlertDialog.Builder(this@LoginActivity)
+            .setPositiveButton("Get Link") { dialog, which ->
+                mAuth?.sendPasswordResetEmail(etLoginEmail.text.toString())
+                    ?.addOnSuccessListener {
+                        toast("Password reset link sent to your mail")
+                        dialog.dismiss()
+                    }
+                    ?.addOnFailureListener {
+                        toast("Please try again after some time")
+                    }
+
+            }
+            .setNegativeButton("Cancel") { dialog, which ->
+                dialog.dismiss()
+            }
+            .setTitle("Hati samaj")
+            .setMessage("Password reset link will sent to your mention mail")
+            .show()
     }
 
     private fun allowUserToLogin() {
-        mAuth?.signInWithEmailAndPassword(etLoginEmail.text.toString(), etLoginPassword.text.toString())?.addOnCompleteListener {
+        mAuth?.signInWithEmailAndPassword(
+            etLoginEmail.text.toString(),
+            etLoginPassword.text.toString()
+        )?.addOnCompleteListener {
             if (it.isSuccessful) {
 
                 FirebaseInstanceId.getInstance().instanceId
@@ -68,12 +102,24 @@ class LoginActivity : AppCompatActivity() {
                         val token = task.result!!.token
                         userData?.update(CommonUtils.DEVICE_TOKEN, token)
                             ?.addOnSuccessListener {
-                                toast("Login successful")
+                                userData?.get()?.addOnSuccessListener {
+                                    val user = it.toObject(UserData::class.java)
+                                    SharedPrefUtils().storeUserType(
+                                        this@LoginActivity,
+                                        user?.userType!!
+                                    )
+                                    toast("Login successful")
+                                    Log.d("TAG", token)
+                                    aviLoadingLogin.hide()
+                                    startActivity(
+                                        Intent(
+                                            this@LoginActivity,
+                                            MainActivity::class.java
+                                        ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                                    )
+                                    finish()
+                                }
                             }
-                        Log.d("TAG", token)
-                        aviLoadingLogin.hide()
-                        startActivity(Intent(this@LoginActivity, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
-                        finish()
                     })
 
 
