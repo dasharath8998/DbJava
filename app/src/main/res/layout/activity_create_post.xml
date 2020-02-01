@@ -18,80 +18,176 @@
         android:layout_below="@id/toolbar"
         android:fillViewport="true">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            tools:context=".CreatePostActivity">
+            android:orientation="vertical">
 
-            <com.wang.avi.AVLoadingIndicatorView
-                android:id="@+id/aviLoading"
-                style="@style/AVLoadingIndicatorView"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_50sdp"
-                android:layout_centerInParent="true"
-                android:elevation="@dimen/_20sdp"
-                android:visibility="gone"
-                app:indicatorName="BallScaleMultipleIndicator" />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/linearPost"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_250sdp"
-                android:elevation="@dimen/_3sdp"
-                android:orientation="vertical"
-                app:cardBackgroundColor="@color/colorPrimaryDark">
-
-                <ImageView
-                    android:id="@+id/imgPost"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop" />
-
-            </androidx.cardview.widget.CardView>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/PostDescription"
+            <LinearLayout
+                android:id="@+id/linearImagePost"
+                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/linearPost"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:layout_marginEnd="@dimen/_5sdp"
-                android:hint="Description">
+                android:orientation="vertical">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etPostDescription"
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textCapSentences"/>
+                    android:orientation="vertical"
+                    tools:context=".CreatePostActivity">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.wang.avi.AVLoadingIndicatorView
+                        android:id="@+id/aviLoading"
+                        style="@style/AVLoadingIndicatorView"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        android:layout_centerInParent="true"
+                        android:elevation="@dimen/_20sdp"
+                        android:visibility="gone"
+                        app:indicatorName="BallScaleMultipleIndicator" />
 
-            <Button
-                android:id="@+id/btnCreatePost"
-                android:layout_width="@dimen/_65sdp"
-                android:layout_height="@dimen/_35sdp"
-                android:layout_below="@id/PostDescription"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:background="@drawable/custom_buttons"
-                android:text="Post"
-                android:textColor="@android:color/white" />
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/linearPost"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_250sdp"
+                        android:elevation="@dimen/_3sdp"
+                        android:orientation="vertical"
+                        app:cardBackgroundColor="@color/colorPrimaryDark">
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fabGallery"
-                android:layout_width="wrap_content"
+                        <ImageView
+                            android:id="@+id/imgPost"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/PostDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/linearPost"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:hint="Description">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etPostDescription"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textCapSentences"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:id="@+id/btnCreatePost"
+                        android:layout_width="@dimen/_65sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_below="@id/PostDescription"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:background="@drawable/custom_buttons"
+                        android:text="Post"
+                        android:textColor="@android:color/white" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearUrlPost"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginEnd="@dimen/_20sdp"
-                android:layout_marginBottom="@dimen/_20sdp"
-                android:backgroundTint="@color/colorPrimary"
-                android:src="@drawable/ic_gallery"
-                android:tint="@android:color/white" />
+                android:orientation="vertical">
 
-        </RelativeLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:text="Post title"
+                    android:textSize="@dimen/_14sdp" />
+
+                <EditText
+                    android:id="@+id/etPostURLTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_7sdp"
+                    android:textSize="@dimen/_12sdp"
+                    android:background="@drawable/custom_edittext"
+                    android:inputType="textCapSentences"
+                    android:maxLines="1"
+                    android:padding="@dimen/_9sdp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:text="Post URL"
+                    android:textSize="@dimen/_14sdp" />
+
+                <EditText
+                    android:id="@+id/etPostUrl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|left"
+                    android:lines="8"
+                    android:maxLines="10"
+                    android:textSize="@dimen/_12sdp"
+                    android:minLines="6"
+                    android:padding="@dimen/_5sdp"
+                    android:background="@drawable/custom_edittext"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginStart="@dimen/_7sdp"
+                    android:layout_marginEnd="@dimen/_7sdp"
+                    android:scrollbars="vertical" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:text="Post Description"
+                    android:textSize="@dimen/_14sdp" />
+
+                <EditText
+                    android:id="@+id/etUrlPostDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|left"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:lines="8"
+                    android:maxLines="10"
+                    android:textSize="@dimen/_12sdp"
+                    android:minLines="6"
+                    android:padding="@dimen/_5sdp"
+                    android:background="@drawable/custom_edittext"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginStart="@dimen/_7sdp"
+                    android:layout_marginEnd="@dimen/_7sdp"
+                    android:scrollbars="vertical" />
+
+                <Button
+                    android:id="@+id/btnPostURL"
+                    android:layout_width="@dimen/_65sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/custom_buttons"
+                    android:text="Post"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:textColor="@android:color/white" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
 
     </ScrollView>
 

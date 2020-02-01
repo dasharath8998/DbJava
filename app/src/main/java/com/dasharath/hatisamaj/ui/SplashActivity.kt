@@ -6,6 +6,8 @@ import android.content.pm.PackageInfo
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.dasharath.hatisamaj.MainActivity
@@ -17,6 +19,7 @@ import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.messaging.FirebaseMessaging
 
 
 class SplashActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityReceiverListener {
@@ -30,7 +33,20 @@ class SplashActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityRec
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         init()
+        subscribeToTopic()
         checkAppStatus()
+    }
+
+    private fun subscribeToTopic() {
+        FirebaseMessaging.getInstance().subscribeToTopic("postUpload")
+            .addOnCompleteListener { task ->
+//                var msg = getString(R.string.msg_subscribed)
+//                if (!task.isSuccessful) {
+//                    msg = getString(R.string.msg_subscribe_failed)
+//                }
+//                Log.d("TAG", msg)
+//                Toast.makeText(this@SplashActivity, msg, Toast.LENGTH_SHORT).show()
+            }
     }
 
     override fun onResume() {
@@ -90,7 +106,7 @@ class SplashActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityRec
     private fun showNetworkMessage(isConnected: Boolean) {
         if (!isConnected) {
             snackBar = Snackbar.make(
-                findViewById(R.id.mainCommon),
+                findViewById(R.id.relativeSplash),
                 "You are offline",
                 Snackbar.LENGTH_LONG
             ) //Assume "rootLayout" as the root layout of every activity.

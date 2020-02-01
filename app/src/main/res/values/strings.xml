@@ -23,6 +23,8 @@
     <string name="no">Cancel</string>
     <string name="SS">Social servant</string>
 
+    <string name="msg_subscribe_failed">Failed Subscribe</string>
+
     <string-array name="studiesType">
         <item>Select</item>
         <item>SSC</item>

@@ -11,7 +11,9 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.text.format.DateFormat
 import android.util.Log
+import android.util.Patterns
 import android.view.View
+import android.widget.EditText
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -54,6 +56,8 @@ class CreatePostActivity : AppCompatActivity(), ConnectivityReceiver.Connectivit
     }
 
     private fun init() {
+
+
         registerReceiver(ConnectivityReceiver(), IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
         postImage = FirebaseStorage.getInstance().reference.child(CommonUtils.POST_IMAGE)
         db = FirebaseFirestore.getInstance()
@@ -62,7 +66,17 @@ class CreatePostActivity : AppCompatActivity(), ConnectivityReceiver.Connectivit
         docId = db?.collection(CommonUtils.PEOPLE)?.document()?.id.toString()
 
         toolbar.ivBack.visibility = View.VISIBLE
-        toolbar.tvTitle.text = "Create post"
+
+        var isFromURL = intent.getBooleanExtra(CommonUtils.IS_FROM_URL,false)
+        if(isFromURL){
+            toolbar.tvTitle.text = "Create URL post"
+            linearImagePost.visibility = View.GONE
+            linearUrlPost.visibility = View.VISIBLE
+        } else {
+            toolbar.tvTitle.text = "Create post"
+            linearImagePost.visibility = View.VISIBLE
+            linearUrlPost.visibility = View.GONE
+        }
     }
 
     override fun onResume() {
@@ -79,10 +93,6 @@ class CreatePostActivity : AppCompatActivity(), ConnectivityReceiver.Connectivit
             openGalleryDialog()
         }
 
-        fabGallery.setOnClickListener {
-            openGalleryDialog()
-        }
-
         btnCreatePost.setOnClickListener {
             if(result == null)
                 toast("Please select image first")
@@ -90,6 +100,62 @@ class CreatePostActivity : AppCompatActivity(), ConnectivityReceiver.Connectivit
                 putFileToFirebase(result!!)
 
         }
+
+        btnPostURL.setOnClickListener {
+            if(isValidForm()){
+                storeURLPostDetail()
+            } else {
+                toast("Please fill require fields")
+            }
+        }
+    }
+
+    private fun storeURLPostDetail() {
+        aviLoading.show()
+        val postDetail = hashMapOf<String,String>(
+            CommonUtils.DESCRIPTION to etUrlPostDescription.text.toString(),
+            CommonUtils.POST_DATE to DateFormat.format("hh:mm a - MMM d", Date().time).toString(),
+            CommonUtils.TITLE to etPostURLTitle.text.toString(),
+            CommonUtils.URL to etPostUrl.text.toString(),
+            CommonUtils.DOC_ID to docId
+        )
+
+        db?.collection(CommonUtils.POST_URL)?.document(docId)?.set(postDetail)
+            ?.addOnSuccessListener {
+                aviLoading.hide()
+                setResult(Activity.RESULT_OK, Intent())
+                onBackPressed()
+                toast("Post uploaded successfully")
+            }
+            ?.addOnFailureListener { e ->
+                aviLoading.hide()
+                Log.w("TAG", "Error adding document", e)
+            }
+    }
+
+    private fun isValidForm(): Boolean {
+        if (!etPostURLTitle.checkTextValue()) return false
+        if (!etPostUrl.checkTextValue(isURL = true)) return false
+        if (!etUrlPostDescription.checkTextValue()) return false
+        return true
+    }
+
+    private fun EditText.checkTextValue(isURL: Boolean = false): Boolean {
+
+        val value = this.text.toString()
+        if (value == "") {
+            this.error = "This field can't be blank"
+            return false
+        }
+
+        if (isURL) {
+            if (!Patterns.WEB_URL.matcher(value).matches()) {
+                this.error = "Enter valid URL"
+                return false
+            }
+        }
+
+        return true
     }
 
     private fun openGalleryDialog() {

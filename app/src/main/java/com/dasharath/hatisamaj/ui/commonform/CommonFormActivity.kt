@@ -149,6 +149,8 @@ class CommonFormActivity : AppCompatActivity(),ConnectivityReceiver.Connectivity
             if (formIsValid()) {
                 storeFormData()
                 navigateUserToAnotherForm()
+            } else {
+                toast("Please fill require fields")
             }
         }
 

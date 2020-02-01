@@ -1,6 +1,7 @@
 package com.dasharath.hatisamaj.ui.personinfotab
 
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -24,7 +25,11 @@ class OtherInfo : Fragment() {
     private var db: FirebaseFirestore? = null
     var personData: PersonDetailModel? = null
     var isStatusChange = false
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_other_info, container, false)
     }
 
@@ -38,7 +43,7 @@ class OtherInfo : Fragment() {
         db = FirebaseFirestore.getInstance()
         personData = arguments?.getSerializable(CommonUtils.PERSONAL) as PersonDetailModel
         cardDegree.hideOrDisplayData(personData?.education!!, tvEducation)
-        cardPercentage.hideOrDisplayData("",tvEducation)
+        cardPercentage.hideOrDisplayData("", tvEducation)
         cardJobType.hideOrDisplayData(personData?.job_type!!, tvJobType)
         cardClass.hideOrDisplayData(personData?.job_class!!, tvClass)
         cardDesignation.hideOrDisplayData(personData?.designation!!, tvDesignation)
@@ -46,22 +51,25 @@ class OtherInfo : Fragment() {
         cardBusinessName.hideOrDisplayData(personData?.business_name!!, tvBusinessName)
         cardOther.hideOrDisplayData(personData?.Other!!, tvOther)
 
-        if(SharedPrefUtils().getUserType(context!!) == CommonUtils.ADMIN) {
+        if (SharedPrefUtils().getUserType(context!!) == CommonUtils.ADMIN) {
             cardMobile.visibility = View.VISIBLE
             tvPhone.text = personData?.mobile_no
             linearSatus.visibility = View.VISIBLE
         }
 
-
-        for (i in 0 until spinnerStatus.count) {
-            if (spinnerStatus.getItemAtPosition(i).toString() == personData?.status){
-                spinnerStatus.setSelection(i)
-            }
-        }
+        setSpinnerInitialValue()
 
         if (personData?.business_detail!! != "") {
             cardOther.visibility = View.VISIBLE
             tvOther.text = personData?.business_detail
+        }
+    }
+
+    private fun setSpinnerInitialValue() {
+        for (i in 0 until spinnerStatus.count) {
+            if (spinnerStatus.getItemAtPosition(i).toString() == personData?.status) {
+                spinnerStatus.setSelection(i)
+            }
         }
     }
 
@@ -73,34 +81,46 @@ class OtherInfo : Fragment() {
             startActivity(callIntent)
         }
 
-        spinnerStatus.onItemSelectedListener  = object : AdapterView.OnItemSelectedListener {
+        spinnerStatus.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val status = parent?.getItemAtPosition(position).toString()
-                if(status != personData?.status) {
-                    personData?.status = status
-                    isStatusChange = true
-                    db?.collection(CommonUtils.PEOPLE)?.document(personData?.doc_id!!)
-                        ?.update(CommonUtils.STATUS, status)
-                        ?.addOnSuccessListener {
-                            context?.toast("Status changed")
-                        }
+                if (status != personData?.status) {
+                    showDialogOnChange(status)
                 }
             }
         }
     }
 
-    private fun View.hideOrDisplayData(value: String, field: TextView){
-        if(value != ""){
+    private fun showDialogOnChange(status: String) {
+        AlertDialog.Builder(context!!)
+            .setPositiveButton("Update") { dialog, which ->
+                personData?.status = status
+                isStatusChange = true
+                db?.collection(CommonUtils.PEOPLE)?.document(personData?.doc_id!!)
+                    ?.update(CommonUtils.STATUS, status)
+                    ?.addOnSuccessListener {
+                        context?.toast("Status changed")
+                    }
+            }
+            .setNegativeButton("Cancel") { dialog, which ->
+                setSpinnerInitialValue()
+                dialog.dismiss()
+            }
+            .setTitle("Hati samaj")
+            .setMessage("Are you sure you want to update status to \"${status}\"")
+            .show()
+    }
+
+    private fun View.hideOrDisplayData(value: String, field: TextView) {
+        if (value != "") {
             field.text = value
         } else {
             visibility = View.GONE
         }
     }
-
-    fun getStatus(): Boolean = isStatusChange
 
 }

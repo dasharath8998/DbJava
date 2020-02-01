@@ -92,6 +92,10 @@ object CommonUtils {
     const val APP_VERSION = "appVersion"
     const val IS_FORCED = "isForced"
     const val UPDATE_MESSAGE = "updateMessage"
+
+    const val POST_URL = "post_url"
+    const val URL = "url"
+    const val IS_FROM_URL = "is_from_url"
 }
 
 object Utils{

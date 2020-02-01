@@ -68,7 +68,9 @@ class AccountFragment : Fragment() {
             view.aviLoadingAccount.show()
             isLoggedIn = true
 
-            setData(view)
+            if (currentUser != null) {
+                setData(view)
+            }
             view.linearSignIn.visibility = View.GONE
             view.linearAccountLogin.visibility = View.VISIBLE
         } else {
@@ -100,7 +102,7 @@ class AccountFragment : Fragment() {
 
         view.tvLogout.setOnClickListener {
             mAuth?.signOut()
-            SharedPrefUtils().storeUserType(context!!,"")
+            SharedPrefUtils().storeUserType(context!!, "")
             view.linearSignIn.visibility = View.VISIBLE
             view.linearAccountLogin.visibility = View.GONE
         }
@@ -112,7 +114,10 @@ class AccountFragment : Fragment() {
 
         view.tvRegister.setOnClickListener {
             view.aviLoadingAccount.show()
-            db?.collection(CommonUtils.PEOPLE)?.whereEqualTo(CommonUtils.STATUS, CommonUtils.PENDING)?.get()?.addOnSuccessListener {
+            db?.collection(CommonUtils.PEOPLE)
+                ?.whereEqualTo(CommonUtils.STATUS, CommonUtils.PENDING)
+                ?.whereEqualTo(CommonUtils.UID, currentUser?.uid.toString())?.get()
+                ?.addOnSuccessListener {
                     view.aviLoadingAccount.hide()
                     val peopleId = it.documents
                     if (peopleId.size > 2) {

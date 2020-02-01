@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
-            name="notificationData"
-            type="com.dasharath.hatisamaj.model.NotificationModel" />
+            name="urlPost"
+            type="com.dasharath.hatisamaj.model.URLPostModel" />
     </data>
 
 
@@ -22,27 +23,79 @@
             android:id="@+id/ivItemNotificationPerson"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
+            android:src="@drawable/ic_browse"
+            android:layout_centerVertical="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_6sdp"
             android:layout_marginBottom="@dimen/_6sdp"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:background="@drawable/custom_square_border" />
+            android:layout_marginEnd="@dimen/_8sdp" />
 
-        <TextView
-            android:id="@+id/tvNotificationDescription"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_toEndOf="@+id/ivItemNotificationPerson"
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_8sdp"
             android:layout_marginEnd="@dimen/_15sdp"
-            android:ellipsize="end"
-            android:maxLines="3"
-            android:text="@{notificationData.name}"
-            android:textSize="@dimen/_12sdp" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvNotificationTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                tools:text="Titele 1ds f"
+                android:text="@{urlPost.description}"
+                android:textSize="@dimen/_12sdp" />
+
+            <TextView
+                android:id="@+id/tvNotificationDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                tools:text="kfna akjnksa sj jnfksj  a,s,dfn,ad snf,asdn f,asadnf n,d ,fnafasdsd,fjnj nasad .a.kkmfmd.admfmakkm flkaksadm dmf laksdsm m flkaasmsd flkaksamddfld kasmadsmdlfk"
+                android:maxLines="6"
+                android:text="@{urlPost.description}"
+                android:textSize="@dimen/_12sdp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvNotificationDate"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    tools:text="hh:mm a - MMM d"
+                    android:gravity="center"
+                    android:maxLines="6"
+                    android:textColor="@color/colorAccent"
+                    android:text="@{urlPost.post_date}"
+                    android:textSize="@dimen/_8sdp" />
+
+                <ImageView
+                    android:id="@+id/imgDeletePost"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_15sdp"
+                    android:tint="@color/colorAccent"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:src="@drawable/ic_delete_registration"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
 
     </RelativeLayout>

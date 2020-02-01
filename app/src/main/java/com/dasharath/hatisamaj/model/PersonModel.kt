@@ -1,6 +1,7 @@
 package com.dasharath.hatisamaj.model
 
 import java.io.Serializable
+import java.util.*
 
 data class PersonModel(
     var image: String,
@@ -24,9 +25,21 @@ data class PostModel(
     var like_count: String,
     var liked_user: String,
     var image_url: String,
-    var post_date: String
+    var post_date: String,
+    var postDate: Date
 ){
-    constructor(): this("","","","","","")
+    constructor(): this("","","","","","", Date())
+}
+
+data class URLPostModel(
+    var description: String,
+    var doc_id: String,
+    var post_date: String,
+    var url: String,
+    var title: String,
+    var postDate: Date
+){
+    constructor(): this("","","","","",Date())
 }
 
 data class PersonDetailModel(

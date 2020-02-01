@@ -4,11 +4,13 @@ package com.dasharath.hatisamaj.ui.home
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dasharath.hatisamaj.BR
@@ -27,6 +29,11 @@ import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.android.synthetic.main.toolbar_app.view.*
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 
 class HomeFragment : Fragment() {
 
@@ -37,6 +44,7 @@ class HomeFragment : Fragment() {
     private var firebaseStorage: FirebaseStorage? = null
     private var db: FirebaseFirestore? = null
     var adminStatus: Boolean = false
+    val format = SimpleDateFormat("hh:mm a - MMM d")
 
     var globleView: View? = null
 
@@ -62,6 +70,7 @@ class HomeFragment : Fragment() {
                 postList = ArrayList()
                 for(id in postId){
                     val postData = id.toObject(PostModel::class.java)
+                    postData?.postDate = format.parse(postData?.post_date)
                     postList?.add(postData!!)
                     setAdapter(view)
                 }
@@ -106,6 +115,9 @@ class HomeFragment : Fragment() {
         } else {
             view.aviLoading.hide()
         }
+
+        postList?.sortByDescending { it.postDate }
+
         LastAdapter(postList!!,BR.postData).map<PostModel,ItemPostLayoutBinding>(R.layout.item_post_layout){
             onBind {
                 val currentItem = postList!![it.adapterPosition]
