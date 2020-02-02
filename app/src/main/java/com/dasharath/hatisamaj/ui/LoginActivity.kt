@@ -12,12 +12,15 @@ import com.dasharath.hatisamaj.R
 import com.dasharath.hatisamaj.model.UserData
 import com.dasharath.hatisamaj.utils.CommonUtils
 import com.dasharath.hatisamaj.utils.SharedPrefUtils
+import com.dasharath.hatisamaj.utils.Utils
 import com.dasharath.hatisamaj.utils.Utils.toast
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.iid.InstanceIdResult
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.toolbar_app.view.*
 
@@ -96,32 +99,23 @@ class LoginActivity : AppCompatActivity() {
                             return@OnCompleteListener
                         }
 
-                        currentUserId = mAuth?.currentUser?.uid!!
-                        userData = db?.collection(CommonUtils.USER)?.document(currentUserId!!)
-                        // Get new Instance ID token
-                        val token = task.result!!.token
-                        userData?.update(CommonUtils.DEVICE_TOKEN, token)
-                            ?.addOnSuccessListener {
-                                userData?.get()?.addOnSuccessListener {
-                                    val user = it.toObject(UserData::class.java)
-                                    SharedPrefUtils().storeUserType(
-                                        this@LoginActivity,
-                                        user?.userType!!
-                                    )
-                                    toast("Login successful")
-                                    Log.d("TAG", token)
-                                    aviLoadingLogin.hide()
-                                    startActivity(
-                                        Intent(
-                                            this@LoginActivity,
-                                            MainActivity::class.java
-                                        ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                                    )
-                                    finish()
+                        if(!mAuth?.currentUser?.isEmailVerified!!){
+                            aviLoadingLogin.hide()
+                            AlertDialog.Builder(this@LoginActivity)
+                                .setTitle("Hati kshatriy samaj")
+                                .setMessage("This email address is not verifyed please verify and than login")
+                                .setPositiveButton("Get link again"){ dialog, which ->
+                                    Utils.sendVerificationLink(this@LoginActivity,mAuth!!)
+                                    dialog.dismiss()
                                 }
-                            }
+                                .setNegativeButton("Cancel"){dialog, which ->
+                                    dialog.dismiss()
+                                }
+                                .show()
+                        } else {
+                            navigateToMainActivity(task)
+                        }
                     })
-
 
             } else {
                 aviLoadingLogin.hide()
@@ -130,6 +124,30 @@ class LoginActivity : AppCompatActivity() {
             }
 
         }
+    }
+
+    private fun navigateToMainActivity(task: Task<InstanceIdResult>) {
+        currentUserId = mAuth?.currentUser?.uid!!
+        userData = db?.collection(CommonUtils.USER)?.document(currentUserId!!)
+        // Get new Instance ID token
+        val token = task.result!!.token
+        userData?.update(CommonUtils.DEVICE_TOKEN, token)
+            ?.addOnSuccessListener {
+                userData?.get()?.addOnSuccessListener {
+                    val user = it.toObject(UserData::class.java)
+                    SharedPrefUtils().storeUserType(this@LoginActivity, user?.userType!!)
+                    toast("Login successful")
+                    Log.d("TAG", token)
+                    aviLoadingLogin.hide()
+                    startActivity(
+                        Intent(
+                            this@LoginActivity,
+                            MainActivity::class.java
+                        ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    )
+                    finish()
+                }
+            }
     }
 
     private fun formValid(): Boolean {

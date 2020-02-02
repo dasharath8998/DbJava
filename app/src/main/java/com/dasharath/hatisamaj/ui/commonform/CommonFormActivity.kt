@@ -5,8 +5,10 @@ import android.app.Activity
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.net.ConnectivityManager
 import android.os.Bundle
+import android.provider.MediaStore
 import android.text.format.DateFormat
 import android.util.Patterns
 import android.view.View
@@ -36,6 +38,7 @@ import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_common_from.*
 import kotlinx.android.synthetic.main.toolbar_app.view.*
+import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.regex.Pattern
@@ -272,10 +275,16 @@ class CommonFormActivity : AppCompatActivity(),ConnectivityReceiver.Connectivity
     }
 
     private fun putFileToFirebase(data: CropImage.ActivityResult) {
+
+        val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, data.uri)
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 25, baos)
+        val newByteArray = baos.toByteArray()
+
         val resultUri = data.uri
         imgProfile.setImageURI(resultUri)
         val filePath = userPfofileImagesRef?.child(System.currentTimeMillis().toString() + ".jpg")
-        filePath?.putFile(resultUri!!)?.addOnCompleteListener {
+        filePath?.putBytes(newByteArray)?.addOnCompleteListener {
             if (it.isSuccessful) {
                 storeDownloadUrl(filePath)
                 if(oldImagePath != null){

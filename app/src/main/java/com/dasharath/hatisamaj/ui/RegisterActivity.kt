@@ -5,10 +5,11 @@ import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
 import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.dasharath.hatisamaj.MainActivity
 import com.dasharath.hatisamaj.R
 import com.dasharath.hatisamaj.utils.CommonUtils
+import com.dasharath.hatisamaj.utils.Utils
 import com.dasharath.hatisamaj.utils.Utils.toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
@@ -72,21 +73,39 @@ class RegisterActivity : AppCompatActivity() {
                             .document(mAuth?.currentUser?.uid!!.toString()).set(userDetail)
                             .addOnSuccessListener { documentReference ->
                                 aviLoadingRegister.hide()
+                                sendVerificationLink()
                                 Log.d("TAG", "DocumentSnapshot added with $documentReference")
                             }
                             .addOnFailureListener { e ->
                                 Log.w("TAG", "Error adding document", e)
                             }
-
-                        startActivity(
-                            Intent(this@RegisterActivity, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                        )
-                        finish()
                         toast("Account created successfully")
                     })
             } else {
                 val message = it.exception.toString()
                 toast("Error: $message")
+            }
+        }
+    }
+
+    fun sendVerificationLink() {
+        mAuth?.currentUser?.sendEmailVerification()?.addOnCompleteListener {
+            if (it.isSuccessful) {
+                AlertDialog.Builder(this@RegisterActivity)
+                    .setTitle("Hati kshtriya samaj")
+                    .setMessage("Email verification link send to your mail please verify than login")
+                    .setPositiveButton("Ok") { dialog, which ->
+                        startActivity(
+                            Intent(
+                                this@RegisterActivity,
+                                LoginActivity::class.java
+                            ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        )
+                        finish()
+                    }
+                    .show()
+            } else {
+                toast("Something went wrong please try again later")
             }
         }
     }

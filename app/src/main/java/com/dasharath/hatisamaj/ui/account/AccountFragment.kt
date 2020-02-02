@@ -65,6 +65,10 @@ class AccountFragment : Fragment() {
         currentUser = mAuth?.currentUser
         view.toolbar.tvTitle.text = "Account & Settings"
         if (currentUser != null) {
+            if(!currentUser?.isEmailVerified!!){
+                mAuth?.signOut()
+                return
+            }
             view.aviLoadingAccount.show()
             isLoggedIn = true
 

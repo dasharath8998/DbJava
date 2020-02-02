@@ -206,6 +206,7 @@ class NotificationFragment : Fragment() {
         if (requestCode == requestCodeRegistration) {
             if (resultCode == Activity.RESULT_OK) {
                 getDataFirstTime(viewGlobal!!)
+                getPostData(viewGlobal!!)
             }
         }
     }

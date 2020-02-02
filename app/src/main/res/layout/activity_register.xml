@@ -39,7 +39,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:scaleType="fitCenter"
-                android:src="@drawable/signup_photo" />
+                android:src="@drawable/hati_kshtriy" />
 
             <EditText
                 android:id="@+id/etRegisterEmail"

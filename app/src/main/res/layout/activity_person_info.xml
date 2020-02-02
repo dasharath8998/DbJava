@@ -54,7 +54,7 @@
             android:layout_width="@dimen/_90sdp"
             android:layout_height="@dimen/_90sdp"
             android:layout_marginTop="@dimen/_18sdp"
-            app:civ_border_width="@dimen/_3sdp"
+            app:civ_border_width="@dimen/_1sdp"
             android:src="@drawable/ic_person_male" />
 
         <TextView

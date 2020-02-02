@@ -196,8 +196,6 @@ class CreatePostActivity : AppCompatActivity(), ConnectivityReceiver.Connectivit
                         CommonUtils.IMAGE_URL to postImageUrl,
                         CommonUtils.DESCRIPTION to etPostDescription.text.toString(),
                         CommonUtils.POST_DATE to DateFormat.format("hh:mm a - MMM d", Date().time).toString(),
-                        CommonUtils.LIKE_COUNT to "0",
-                        CommonUtils.LIKED_USER to "",
                         CommonUtils.DOC_ID to docId
                     )
 

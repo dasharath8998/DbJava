@@ -3,6 +3,7 @@ package com.dasharath.hatisamaj.utils
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Matrix
 import android.net.Uri
@@ -11,6 +12,9 @@ import android.text.format.DateFormat
 import android.widget.Toast
 import com.dasharath.hatisamaj.R
 import com.dasharath.hatisamaj.listeners.DateSetListener
+import com.dasharath.hatisamaj.ui.LoginActivity
+import com.dasharath.hatisamaj.utils.Utils.toast
+import com.google.firebase.auth.FirebaseAuth
 import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
@@ -228,5 +232,21 @@ object Utils{
                 dialog.dismiss()
             }
             .show()
+    }
+
+    fun sendVerificationLink(context: Context,mAuth: FirebaseAuth) {
+        mAuth.currentUser?.sendEmailVerification()?.addOnCompleteListener {
+            if (it.isSuccessful) {
+                AlertDialog.Builder(context)
+                    .setTitle("Hati kshtriya samaj")
+                    .setMessage("Email verification link send to your mail please verify than login")
+                    .setPositiveButton("Ok") { dialog, which ->
+                        dialog.dismiss()
+                    }
+                    .show()
+            } else {
+                context.toast("Something went wrong please try again later")
+            }
+        }
     }
 }

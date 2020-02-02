@@ -22,13 +22,11 @@ data class NotificationModel(
 data class PostModel(
     var description: String,
     var doc_id: String,
-    var like_count: String,
-    var liked_user: String,
     var image_url: String,
     var post_date: String,
     var postDate: Date
 ){
-    constructor(): this("","","","","","", Date())
+    constructor(): this("","","","", Date())
 }
 
 data class URLPostModel(

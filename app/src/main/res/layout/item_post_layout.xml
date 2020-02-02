@@ -100,7 +100,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="10"
-                    android:text="@{postData.like_count}"
                     android:textSize="@dimen/_13sdp"
                     android:layout_gravity="center"
                     android:layout_marginStart="@dimen/_5sdp"/>
